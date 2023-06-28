@@ -63,17 +63,9 @@
                 {{-- menu user --}}
                 @if (Auth::user()->role == 'user')
                     <li class="menu-header">Pembayaran</li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-th-large"></i> <span>UMKM</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="{{ request()->is('jadi') ? 'active' : '' }}"><a class="nav-link"
-                                    href="{{ route('umkm.jadi.index') }}">Produk Jadi</a></li>
-                            <li class="{{ request()->is('setengahjadi') ? 'active' : '' }}"><a class="nav-link"
-                                    href="{{ route('umkm.setengahjadi.index') }}">Produk 1/2 Jadi</a></li>
-                            <li class="{{ request()->is('mentah') ? 'active' : '' }}"><a class="nav-link"
-                                    href="{{ route('umkm.mentah.index') }}">Produk Mentah</a></li>
-                        </ul>
+                    <li class=" {{ request()->is('umkm') ? 'active' : '' }}">
+                        <a href="{{ route('umkm.index') }}" class="nav-link"><i class="fas fa-th-large"></i>
+                            <span>UMKM</span></a>
                     <li class=" {{ request()->is('pamsimas') ? 'active' : '' }}">
                         <a href="{{ route('pamsimas.index') }}" class="nav-link"><i class="fab fa-product-hunt"></i>
                             <span>Pamsimas</span></a>

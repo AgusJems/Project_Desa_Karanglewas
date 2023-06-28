@@ -100,9 +100,6 @@ Route::group(['prefix' => 'vaksin', 'as' => 'vaksin.', 'middleware' => 'auth'], 
 // route umkm
 Route::group(['prefix' => 'umkm', 'as' => 'umkm.', 'middleware' => 'auth'], function () {
     Route::get('/', [UmkmController::class, 'index'])->name('index');
-    Route::get('/jadi', [UmkmController::class, 'jadi'])->name('jadi.index');
-    Route::get('/setengah_jadi', [UmkmController::class, 'setJadi'])->name('setengahjadi.index');
-    Route::get('/mentah', [UmkmController::class, 'mentah'])->name('mentah.index');
     Route::get('/create', [UmkmController::class, 'create'])->name('create');
     Route::post('/create', [UmkmController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [UmkmController::class, 'edit'])->name('edit');

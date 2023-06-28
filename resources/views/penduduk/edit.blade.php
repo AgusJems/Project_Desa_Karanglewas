@@ -46,8 +46,13 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
+                                    @if (Auth::user()->role == 'admin')
                                     <input type="text" id="nik" name="nik" class="form-control"
                                         value="{{ $data->nik }}" required>
+                                        @else
+                                    <input type="text" id="nik" name="nik" class="form-control"
+                                        value="{{ $data->nik }}" required readonly>
+                                    @endif
                                     @error('nik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -64,21 +69,45 @@
                                     <input type="text" id="alamat" name="alamat" class="form-control"
                                         value="{{ $data->alamat }}" required>
                                 </div>
+                                @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
                                     <label for="tempatLahir">Tempat Lahir</label>
                                     <input type="text" id="tempatLahir" name="tempatLahir" class="form-control"
                                         value="{{ $data->tptLahir }}" required readonly>
                                 </div>
+                                @else
+                                <div class="form-group">
+                                    <label for="tempatLahir">Tempat Lahir</label>
+                                    <input type="text" id="tempatLahir" name="tempatLahir" class="form-control"
+                                        value="{{ $data->tptLahir }}" required>
+                                </div>
+                                @endif
+                                @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
                                     <label for="tanggalLahir">Tanggal Lahir</label>
                                     <input type="date" id="tanggalLahir" name="tanggalLahir" class="form-control"
                                         value="{{ $data->tglLahir }}" required readonly>
                                 </div>
+                                @else
+                                <div class="form-group">
+                                    <label for="tanggalLahir">Tanggal Lahir</label>
+                                    <input type="date" id="tanggalLahir" name="tanggalLahir" class="form-control"
+                                        value="{{ $data->tglLahir }}" required>
+                                </div>
+                                @endif
+                                @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
                                     <label for="jenisKelamin">Jenis Kelamin</label>
                                     <input type="text" id="jenisKelamin" name="jenisKelamin" class="form-control"
                                         value="{{ $data->kelamin }}" required readonly>
                                 </div>
+                                @else
+                                <div class="form-group">
+                                    <label for="jenisKelamin">Jenis Kelamin</label>
+                                    <input type="text" id="jenisKelamin" name="jenisKelamin" class="form-control"
+                                        value="{{ $data->kelamin }}" required>
+                                </div>
+                                @endif
                                 <div class="form-group">
                                     <label for="kawin">Status Perkawinan</label>
                                     <select id="kawin" name="kawin" class="form-control" required>
@@ -113,11 +142,19 @@
                                         <option value="S3">S3</option>
                                     </select>
                                 </div>
+                                @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
                                     <label for="akta">Nomor Akta</label>
                                     <input type="text" id="akta" name="akta" class="form-control"
                                         value="{{ $data->akta }}" required readonly>
                                 </div>
+                                @else
+                                <div class="form-group">
+                                    <label for="akta">Nomor Akta</label>
+                                    <input type="text" id="akta" name="akta" class="form-control"
+                                        value="{{ $data->akta }}" required>
+                                </div>
+                                @endif
                                 <div class="form-group">
                                     <label for="pam">Pengguna Pamsimas</label>
                                     <select id="pam" name="pam" class="form-control" required>
