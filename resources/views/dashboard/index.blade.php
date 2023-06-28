@@ -38,6 +38,21 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
+                    <div class="card-icon bg-danger">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Laki-laki</h4>
+                        </div>
+                        <div class="card-body">
+                            {{ $laki }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
                         <i class="fas fa-female"></i>
                     </div>
@@ -93,8 +108,10 @@
                                     @if (!$data->tglLahir)
                                         <h3 class="text-danger text-center mt-3">Mohon lengkapi biodata anda terlebih
                                             dahulu.</h3>
+                                        <div class="text-center pt-1 pb-1">
                                         <a href="{{ route('penduduk.edit', Auth::user()->penduduk->id) }}"
-                                            class="btn btn-primary" style="margin-inline-start: 16rem">Biodata</a>
+                                            class="btn btn-primary">Biodata</a>
+                                        </div>
                                     @else
                                         <div class="author-box-description">
                                             <table class="table table-striped">
