@@ -79,6 +79,26 @@ class PendudukController extends Controller
     // meng update data penduduk
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nik' => 'required|min:16|unique:penduduks|numeric'
+        ]);
+        $user = User::whereId($id)->update([
+            'username' => $request->nik,
+        ]);
+
+        $data = Penduduk::where('user_id', $id)->update([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'pendidikan' => $request->pendidikan,
+            'pam' => $request->pam,
+        ]);
+        // dd($data);
+        return redirect()->route('penduduk.index')->with('success', 'Data Penduduk Berhasil Diubah');
+    }
+
+    public function update2(Request $request, $id)
+    {
         // $request->validate([
         //     'nik' => 'required|min:16|unique:penduduks|numeric'
         // ]);
@@ -100,7 +120,7 @@ class PendudukController extends Controller
             'pam' => $request->pam,
         ]);
         // dd($data);
-        return redirect()->route('penduduk.index')->with('success', 'Data Penduduk Berhasil Diubah');
+        return redirect()->route('user.index');
     }
 
     // hapus data penduduk

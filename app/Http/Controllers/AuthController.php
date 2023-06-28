@@ -40,6 +40,7 @@ class AuthController extends Controller
         $user = new User();
         $user->name = $request->nama;
         $user->username = $request->nik;
+        $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'user';
 

@@ -21,7 +21,11 @@
         <div class="section-header">
             <h1>Form Tambah Penduduk</h1>
             <div class="section-header-breadcrumb">
+                @if(Auth::user()->role == 'admin')
                 <div class="breadcrumb-item active"><a href="{{ route('penduduk.index') }}">Penduduk</a></div>
+                @else
+                <div class="breadcrumb-item">Penduduk</a></div>
+                @endif
                 <div class="breadcrumb-item">Form Ubah Data Penduduk</div>
             </div>
         </div>
@@ -42,7 +46,11 @@
                                     </ul>
                                 </div>
                             @endif
+                            @if(Auth::user()->role == 'admin')
                             <form action="{{ route('penduduk.update', $data->user_id) }}" method="POST">
+                            @else
+                            <form action="{{ route('penduduk.update2', $data->user_id) }}" method="POST">
+                            @endif
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK</label>

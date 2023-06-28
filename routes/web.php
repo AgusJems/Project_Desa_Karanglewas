@@ -73,6 +73,7 @@ Route::group(['prefix' => 'penduduk', 'as' => 'penduduk.', 'middleware' => 'auth
     Route::post('/create', [PendudukController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [PendudukController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [PendudukController::class, 'update'])->name('update');
+    Route::post('/update/{id}', [PendudukController::class, 'update2'])->name('update2');
     Route::post('/destroy/{id}', [PendudukController::class, 'delete'])->name('destroy');
 });
 
