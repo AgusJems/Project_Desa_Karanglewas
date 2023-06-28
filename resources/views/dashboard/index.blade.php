@@ -36,17 +36,60 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-danger">
-                    <i class="fas fa-male"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>Laki-laki</h4>
-                    </div>
-                    <div class="card-body">
-                        {{ $laki }}
+        {{-- tampilan nggo user --}}
+        @if (Auth::user()->role == 'user')
+            <div class="row">
+                <div class="col-12 col-sm-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Tentang Saya</h4>
+                            <div class="card-header-action">
+
+                            </div>
+                        </div>
+                        <div class="card author-box card-primary">
+                            <div class="card-body">
+                                <div class="author-box-left">
+                                    <img alt="image" src="../assets/img/avatar/avatar-1.png"
+                                        class="rounded-circle author-box-picture">
+                                </div>
+                                <div class="author-box-details">
+                                    <div class="author-box-name">
+                                        {{ $data->nama }}
+                                    </div>
+                                    <div class="author-box-job">{{ $data->nik }}</div>
+                                    @if(!$data->tglLahir)
+                                    <h3 class="text-danger text-center mt-3">Mohon lengkapi biodata anda terlebih dahulu.</h3>
+                                    <a href="{{route('penduduk.edit', Auth::user()->penduduk->id)}}" class="btn btn-primary" style="margin-inline-start: 16rem">Biodata</a>
+                                    @else
+                                    <div class="author-box-description">
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>Tanggal Lahir</th>
+                                                <td>{{ $data->tglLahir }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Alamat</th>
+                                                <td>{{ $data->alamat }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pengguna Pamsimas</th>
+                                                <td>{{ $data->pam }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status Vaksin</th>
+                                                @if ($data->vaksin == 0)
+                                                    <td class="text-danger">Belum Vaksin</td>
+                                                @elseif ($data->vaksin >= 1)
+                                                    <td class="text-success">Sudah Vaksin</td>
+                                                @endif
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
