@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary btn-lg" tabindex="4">
+                            <button type="submit" class="btn btn-primary btn-lg mr-2" tabindex="4">
                                 Login
                             </button>
-                            <a href="{{ route('register.index') }}" class="btn btn-success btn-lg" tabindex="4">
+                            <a href="{{ route('register.index') }}" class="btn btn-success btn-lg ml-2" tabindex="4">
                                 Daftar
                             </a>
                         </div>

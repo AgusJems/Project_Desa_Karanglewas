@@ -51,6 +51,7 @@
                                             <th>Agama</th>
                                             <th>No. Akta</th>
                                             <th>Pamsimas</th>
+                                            <th>Registrasi</th>
                                             <th>Action</th>
                                         </tr>
                                         @forelse ($penduduk as $value)
@@ -66,6 +67,7 @@
                                                 <td>{{ $value->agama }}</td>
                                                 <td>{{ $value->akta }}</td>
                                                 <td>{{ $value->pam }}</td>
+                                                <td>{{ $value->reg }}</td>
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('penduduk.destroy', $value->id) }}"

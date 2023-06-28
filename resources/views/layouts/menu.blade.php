@@ -47,7 +47,7 @@
                     </li>
                     </li>
 
-                    <li class="menu-header">Pembayaran</li>
+                    <li class="menu-header">Transaksi</li>
                     <li class="nav-item dropdown">
                     <li class="{{ request()->is('umkm') ? 'active' : '' }}">
                         <a href="{{ route('umkm.index') }}" class="nav-link"><i class="fas fa-th-large"></i>
@@ -62,7 +62,7 @@
 
                 {{-- menu user --}}
                 @if (Auth::user()->role == 'user')
-                    <li class="menu-header">Pembayaran</li>
+                    <li class="menu-header">Transaksi</li>
                     <li class=" {{ request()->is('umkm') ? 'active' : '' }}">
                         <a href="{{ route('umkm.index') }}" class="nav-link"><i class="fas fa-th-large"></i>
                             <span>UMKM</span></a>

@@ -164,6 +164,14 @@
                                         <option value="Bukan Pengguna Pamsimas">Bukan Pengguna Pamsimas</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="reg">Registrasi</label>
+                                    <select id="reg" name="pam" class="form-control" required>
+                                        <option value="{{ $data->reg }}" disabled selected>{{ $data->reg }}</option>
+                                        <option value="Sudah">Sudah Registrasi</option>
+                                        <option value="Belum">Belum Registrasi</option>
+                                    </select>
+                                </div>
                                 <div class="text-center pt-1 pb-1">
                                     <button class="btn btn-primary" type="submit">Simpan</button>
                                 </div>

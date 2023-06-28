@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
+use App\Models\Umkm;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -24,8 +25,9 @@ class DashboardController extends Controller
         // nggo nampilna data pemmbayaran pamsimas sekang penduduk sing terbaru
         $dataPamsimas = Penduduk::join('pams', 'penduduks.user_id', '=', 'pams.user_id')->select('pams.*', 'penduduks.nama')->latest()->get();
         // dd($dataPamsimas);
+        $umkms = Umkm::join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')->select('umkms.*', 'penduduks.nik', 'penduduks.nama')->latest()->paginate(10);
         // nggo manggil file tampilan we, nggawa data sing ws di gawe ng nduwur
-        return view('dashboard.index', compact('penduduk', 'laki', 'perempuan', 'vaksin', 'dataVaksin', 'dataPamsimas'));
+        return view('dashboard.index', compact('penduduk', 'laki', 'perempuan', 'vaksin', 'dataVaksin', 'dataPamsimas','umkms'));
     }
 
     public function getData($user_id)
