@@ -79,9 +79,9 @@ class PendudukController extends Controller
     // meng update data penduduk
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nik' => 'required|min:16|unique:penduduks|numeric'
-        ]);
+        // $request->validate([
+        //     'nik' => 'required|min:16|unique:penduduks|numeric'
+        // ]);
         $user = User::whereId($id)->update([
             'username' => $request->nik,
         ]);
@@ -90,8 +90,13 @@ class PendudukController extends Controller
             'nik' => $request->nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
+            'tptLahir' => $request->tempatLahir,
+            'tglLahir' => $request->tanggalLahir,
+            'kelamin' => $request->jenisKelamin,
+            'kawin' => $request->kawin,
             'agama' => $request->agama,
             'pendidikan' => $request->pendidikan,
+            'akta' => $request->akta,
             'pam' => $request->pam,
         ]);
         // dd($data);

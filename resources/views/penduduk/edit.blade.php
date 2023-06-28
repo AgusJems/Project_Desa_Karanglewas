@@ -22,7 +22,7 @@
             <h1>Form Tambah Penduduk</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('penduduk.index') }}">Penduduk</a></div>
-                <div class="breadcrumb-item">Form Tambah Penduduk</div>
+                <div class="breadcrumb-item">Form Ubah Data Penduduk</div>
             </div>
         </div>
 
@@ -46,13 +46,14 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
-                                    @if (Auth::user()->role == 'admin')
-                                    <input type="text" id="nik" name="nik" class="form-control"
-                                        value="{{ $data->nik }}" required>
-                                        @else
                                     <input type="text" id="nik" name="nik" class="form-control"
                                         value="{{ $data->nik }}" required readonly>
-                                    @endif
+                                    {{-- @if (Auth::user()->role == 'admin')
+                                    <input type="text" id="nik" name="nik" class="form-control"
+                                        value="{{ $data->nik }}" required>
+                                    @else
+
+                                    @endif --}}
                                     @error('nik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -66,8 +67,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
-                                    <input type="text" id="alamat" name="alamat" class="form-control"
-                                        value="{{ $data->alamat }}" required>
+                                    <input type="text" id="alamat" name="alamat" class="form-control" required>
                                 </div>
                                 @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
@@ -78,8 +78,7 @@
                                 @else
                                 <div class="form-group">
                                     <label for="tempatLahir">Tempat Lahir</label>
-                                    <input type="text" id="tempatLahir" name="tempatLahir" class="form-control"
-                                        value="{{ $data->tptLahir }}" required>
+                                    <input type="text" id="tempatLahir" name="tempatLahir" class="form-control" required>
                                 </div>
                                 @endif
                                 @if (Auth::user()->role == 'admin')
@@ -104,14 +103,21 @@
                                 @else
                                 <div class="form-group">
                                     <label for="jenisKelamin">Jenis Kelamin</label>
-                                    <input type="text" id="jenisKelamin" name="jenisKelamin" class="form-control"
-                                        value="{{ $data->kelamin }}" required>
+                                    <select id="jenisKelamin" name="jenisKelamin" class="form-control" required>
+                                        <option disabled selected>--Pilih Jenis Kelamin--</option>
+                                        <option value="laki-laki">Laki-laki</option>
+                                        <option value="perempuan">Perempuan</option>
+                                    </select>
                                 </div>
                                 @endif
                                 <div class="form-group">
                                     <label for="kawin">Status Perkawinan</label>
                                     <select id="kawin" name="kawin" class="form-control" required>
+                                        @if(Auth::user()->role == 'admin')
                                         <option value="{{ $data->kawin }}" selected disabled>{{ $data->kawin }}</option>
+                                        @else
+                                        <option disabled selected>--Pilih Status Perkawinan--</option>
+                                        @endif
                                         <option value="Sudah Kawin">Sudah Kawin</option>
                                         <option value="Belum Kawin">Belum Kawin</option>
                                     </select>
@@ -119,7 +125,11 @@
                                 <div class="form-group">
                                     <label for="agama">Agama</label>
                                     <select id="agama" name="agama" class="form-control" required>
+                                        @if(Auth::user()->role == 'admin')
                                         <option value="{{ $data->agama }}" selected disabled>{{ $data->agama }}</option>
+                                        @else
+                                        <option disabled selected>--Pilih Agama--</option>
+                                        @endif
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
                                         <option value="Katholik">Katholik</option>
@@ -131,8 +141,11 @@
                                 <div class="form-group">
                                     <label for="pendidikan">Pendidikan</label>
                                     <select id="pendidikan" name="pendidikan" class="form-control" required>
-                                        <option value="{{ $data->pendidikan }}" selected disabled>{{ $data->pendidikan }}
-                                        </option>
+                                        @if(Auth::user()->role == 'admin')
+                                        <option value="{{ $data->pendidikan }}" selected disabled>{{ $data->pendidikan }}</option>
+                                        @else
+                                        <option disabled selected>--Pilih Pendidikan--</option>
+                                        @endif
                                         <option value="SD">SD</option>
                                         <option value="SMP">SMP</option>
                                         <option value="SLTA">SLTA</option>
@@ -158,8 +171,11 @@
                                 <div class="form-group">
                                     <label for="pam">Pengguna Pamsimas</label>
                                     <select id="pam" name="pam" class="form-control" required>
-                                        <option value="{{ $data->pam }}" disabled selected>{{ $data->pam }}
-                                        </option>
+                                        @if(Auth::user()->role == 'admin')
+                                        <option value="{{ $data->pam }}" disabled selected>{{ $data->pam }}</option>
+                                        @else
+                                        <option disabled selected>--Pilih Status Pengguna Pamsimas--</option>
+                                        @endif
                                         <option value="Pengguna Pamsimas">Pengguna Pamsimas</option>
                                         <option value="Bukan Pengguna Pamsimas">Bukan Pengguna Pamsimas</option>
                                     </select>
