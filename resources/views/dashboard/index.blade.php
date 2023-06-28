@@ -221,7 +221,7 @@
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data Riwayat UMKM</h4>
+                        <h4>Data Produk UMKM</h4>
                     </div>
                     <div class="card-body p-0">
                         <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
@@ -301,7 +301,7 @@
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data Riwayat UMKM</h4>
+                        <h4>Data Produk UMKM</h4>
                     </div>
                     <div class="card-body p-0">
                         <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
