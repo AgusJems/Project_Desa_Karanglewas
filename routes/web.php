@@ -32,13 +32,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/register', function () {
-    return view('auth/register');
-});
+// Route::get('/register', function () {
+//     return view('auth/register');
+// });
 
 // route login
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'process'])->name('login.process');
+Route::get('/register', [AuthController::class, 'register'])->name('register.index');
+Route::post('/register', [AuthController::class, 'registerProcess'])->name('register.process');
 
 // route logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.logout');

@@ -34,6 +34,14 @@
                                     </button>
                                 </div>
                             @enderror
+                            @error('register_success')
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="alert-inner--text"><strong>Success!</strong> {{ $message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @enderror
                             <label for="username">Username/NIK</label>
                             <input id="username" type="text" class="form-control" name="username" tabindex="1"
                                 required autofocus>
@@ -58,9 +66,12 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                            <button type="submit" class="btn btn-primary btn-lg" tabindex="4">
                                 Login
                             </button>
+                            <a href="{{ route('register.index') }}" class="btn btn-success btn-lg" tabindex="4">
+                                Daftar
+                            </a>
                         </div>
                     </form>
 

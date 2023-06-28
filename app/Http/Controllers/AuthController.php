@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penduduk;
+use App\Models\User;
+use App\Models\Vaksin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -20,6 +24,45 @@ class AuthController extends Controller
             }
         }
         return view('auth.login');
+    }
+
+    public function register() {
+        return view('auth.register');
+    }
+
+    public function registerProcess(Request $request) {
+        // validasi data nik
+        $request->validate([
+            'nik' => 'required|min:16|unique:penduduks|numeric',
+            'password' => 'required|min:6',
+        ]);
+        //registrasi penduduk
+        $user = new User();
+        $user->name = $request->nama;
+        $user->username = $request->nik;
+        $user->password = Hash::make($request->password);
+        $user->role = 'user';
+
+        if($user->save())
+        {
+            $data = new Penduduk();
+            $data->nik = $request->nik;
+            $data->nama = $request->nama;
+            $data->user_id = $user->id;
+
+            if ($data->save()) {
+                $vaksin = new Vaksin();
+                $vaksin->user_id = $user->id;
+
+                if ($vaksin->save()) {
+                    return redirect()->route('login.index')->withInput()->withErrors(['register_success' => 'Registrasi Berhasil, silahkan login.']);
+                }
+            }
+        }
+        else
+        {
+            return redirect()->route('register.index')->withInput()->withErrors(['register_failed' => 'Registration Failed.']);
+        }
     }
 
     // proses login

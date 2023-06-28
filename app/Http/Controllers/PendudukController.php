@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use App\Models\User;
 use App\Models\Vaksin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class PendudukController extends Controller
@@ -34,7 +35,8 @@ class PendudukController extends Controller
         $user = new User();
         $user->name = $request->nama;
         $user->username = $request->nik;
-        $user->password = bcrypt('123456');
+        $user->password = Hash::make('123456');
+        // $user->password = bcrypt('123456');
         $user->role = 'user';
 
         // nek user di simpan maka buat data penduduk baru, sesuai sing di input ng form input penduduk

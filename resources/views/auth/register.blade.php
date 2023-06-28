@@ -23,7 +23,7 @@
                     </h4>
 
                     <!-- Kiye fungsi nggo login -->
-                    <form method="POST" action="{{ route('login.process') }}" class="needs-validation" novalidate="">
+                    <form method="POST" action="{{ route('register.process') }}" class="needs-validation" novalidate="">
                         @csrf
                         <div class="form-group">
                             @error('register_failed')
@@ -83,6 +83,9 @@
                             <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                                 Daftar
                             </button>
+                            <!-- <a href="{{ route('login.index') }}" class="btn btn-success btn-lg" tabindex="4">
+                                Login
+                            </a> -->
                         </div>
                     </form>
 
