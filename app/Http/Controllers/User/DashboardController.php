@@ -25,11 +25,8 @@ class DashboardController extends Controller
         $data = Penduduk::where('penduduks.user_id', Auth::user()->id)->join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->select('penduduks.*', 'vaksins.vaksin')->first();
         // nggo nampilna riwayat pembayaran pamsimas user/penduduk sing login
         $dataPamsimas = Penduduk::join('pams', 'penduduks.user_id', '=', 'pams.user_id')->select('pams.*', 'penduduks.nama')->where('pams.user_id', Auth::user()->id)->latest()->get();
-        $umkms = Umkm::join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')
-        ->select('umkms.*', 'penduduks.nik', 'penduduks.nama')
-        ->latest()
-        ->paginate(10);
+        $umkms = Umkm::join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')->select('umkms.*', 'penduduks.nik', 'penduduks.nama')->latest()->paginate(10);
         // nggo manggil file tampilan we, nggawa data sing ws di gawe ng nduwur
-        return view('dashboard.index', compact('penduduk', 'laki', 'perempuan', 'vaksin', 'data', 'dataPamsimas','umkms'));
+        return view('dashboard.index', compact('penduduk', 'laki', 'perempuan', 'vaksin', 'data', 'dataPamsimas', 'umkms'));
     }
 }
