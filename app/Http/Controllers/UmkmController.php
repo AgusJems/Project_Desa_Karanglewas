@@ -101,7 +101,7 @@ class UmkmController extends Controller
     public function regis(Request $request){
         $data = Penduduk::where('nik', $request->nik)->first();
 
-        $data->regis = 'Belum';
+        $data->regis = 'belum';
 
         if(!$data->save()){
             return redirect()->route('umkm.index')->with(['error' => 'Registrasi Gagal!']);

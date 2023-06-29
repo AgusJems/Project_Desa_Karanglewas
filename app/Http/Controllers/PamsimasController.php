@@ -34,25 +34,25 @@ class PamsimasController extends Controller
     // simpan data pembayaran sing dilakukan user/penduduk
     public function store(Request $request)
     {
+        // dd($request->all());
         $pam = new Pam();
-        $pam->user_id = $request->user_id;
+        $pam->user_id = $request->nik;
         $pam->bulan = $request->bulan;
-        $pam->tanggal = $request->tanggal;
+        // $pam->tanggal = $request->tanggal;
         $pam->harga = $request->harga;
-        $pam->status = $request->statuspembayaran;
-        // dd($pam);
+        $pam->status = 'belum';
         // nek data disimpan direct wa ke nomor admin
         if ($pam->save()) {
-            //ganti nomor telepon sesuai dengan nomor admiin
-            return redirect('https://api.whatsapp.com/send?phone=6281225614582&text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran%20pamsimas%20pada%20bulan%20' . $request->bulan);
+            return redirect()->route('pamsimas.index')->with('success', 'Pembayaran pamsimas atas nama, '.$request->nama.' berhasil di atur');
         }
+        //ganti nomor telepon sesuai dengan nomor admiin
     }
 
     // konfirmasi pembayaran ng admin
     public function confirm($id)
     {
         $confirm = Pam::whereId($id)->update([
-            'status' => 'Sudah Bayar'
+            'status' => 'sudah'
         ]);
 
         return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
@@ -60,6 +60,15 @@ class PamsimasController extends Controller
 
     public function create()
     {
-        return view('pamsimas.create');
+        $penduduk = Penduduk::latest()->get();
+
+        return view('pamsimas.create', compact('penduduk'));
+    }
+
+    public function payment($id) {
+        $pay = Pam::find($id);
+        $data = Penduduk::where('id', $pay->user_id)->first();
+
+        return redirect('https://api.whatsapp.com/send?phone=6281225614582&text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran%20pamsimas%20pada%20bulan%20' . $pay->bulan);
     }
 }

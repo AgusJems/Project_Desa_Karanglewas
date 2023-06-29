@@ -53,7 +53,7 @@
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td>
-                                            @if ($item->status == 'Sudah Bayar')
+                                            @if ($item->status == 'sudah')
                                             <div class="badge badge-pill badge-success mb-1 float-right">
                                                 Sudah Bayar
                                             </div>
@@ -149,21 +149,21 @@
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td>
-                                            @if ($item->status == 'Sudah Bayar')
+                                        @if ($item->status == 'sudah')
                                             <div class="badge badge-pill badge-success mb-1 float-right">
                                                 Sudah Bayar
                                             </div>
                                             @else
-                                            <div onclick="bayar({{ $item->id }})" class="badge badge-pill badge-danger mb-1 float-right">
+                                            <div class="badge badge-pill badge-danger mb-1 float-right">
                                                 Belum Bayar
                                             </div>
-                                            @endif
                                         </td>
                                         <td class="text-center">
-                                            <div class="badge badge-pill badge-primary mb-1">
+                                            <div onclick="bayarUser({{ $item->id }})" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
                                                 Bayar
                                             </div>
                                         </td>
+                                        @endif
                                     </tr>
                                     {{-- nek data pamsimas kosong --}}
                                     @empty
@@ -225,6 +225,17 @@
             },
             success: function() {
                 window.location.href = `{{ route('pamsimas.index') }}`;
+            }
+        });
+    }
+
+    function bayarUser(id) {
+        $.ajax({
+            method: 'GET',
+            url: '/pamsimas/payment/' + id,
+            cache: false,
+            data: {
+                _token: "{{ csrf_token() }}"
             }
         });
     }

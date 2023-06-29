@@ -115,5 +115,6 @@ Route::group(['prefix' => 'pamsimas', 'as' => 'pamsimas.', 'middleware' => 'auth
     Route::get('/', [PamsimasController::class, 'index'])->name('index');
     Route::get('/create', [PamsimasController::class, 'create'])->name('create');
     Route::post('/store', [PamsimasController::class, 'store'])->name('store');
+    Route::get('/payment/{id}', [PamsimasController::class, 'payment'])->name('payment');
     Route::get('/paymentConfirmation/{id}', [PamsimasController::class, 'confirm'])->name('confirm');
 });
