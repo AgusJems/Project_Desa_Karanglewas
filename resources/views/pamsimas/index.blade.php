@@ -4,8 +4,8 @@
 @section('appName', 'Website Desa')
 @section('content')
     <section class="section">
-        {{-- tampilan admin --}}
-        @if (Auth::user()->role == 'admin')
+        {{-- tampilan user --}}
+        @if (Auth::user()->role == 'user')
             <div class="section-header">
                 <h1>Data Pamsimas</h1>
                 <div class="section-header-breadcrumb">
@@ -101,8 +101,8 @@
             </div>
         @endif
 
-        {{-- tampilan user --}}
-        @if (Auth::user()->role == 'user')
+        {{-- tampilan admin --}}
+        @if (Auth::user()->role == 'admin')
             {{-- nek data bulan ini ws ana nampilna data --}}
             @if ($data && $data->bulan == date('F Y') && $data->user_id == Auth::user()->id)
                 <div class="row">
