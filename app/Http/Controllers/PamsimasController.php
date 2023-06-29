@@ -57,4 +57,9 @@ class PamsimasController extends Controller
 
         return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
     }
+
+    public function create()
+    {
+        return view('pamsimas.create');
+    }
 }

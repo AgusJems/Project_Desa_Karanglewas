@@ -48,6 +48,7 @@
                                             <th>Kendaraan</th>
                                             <th>Pendapatan /Bulan</th>
                                             <th>Penerimaan PKH</th>
+                                            <th>Regsitrasi</th>
                                             <th>Action</th>
                                         </tr>
                                         @forelse ($pkh as $value)
