@@ -69,6 +69,7 @@ class PamsimasController extends Controller
         $pay = Pam::find($id);
         $data = Penduduk::where('id', $pay->user_id)->first();
 
-        return redirect('https://api.whatsapp.com/send?phone=6281225614582&text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran%20pamsimas%20pada%20bulan%20' . $pay->bulan);
+        return redirect('https://wa.me/6281225614582?text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran%20pamsimas%20pada%20bulan%20' . $pay->bulan);
+        // return redirect('https://api.whatsapp.com/send?phone=6281225614582&text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran%20pamsimas%20pada%20bulan%20' . $pay->bulan);
     }
 }
