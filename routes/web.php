@@ -107,6 +107,7 @@ Route::group(['prefix' => 'umkm', 'as' => 'umkm.', 'middleware' => 'auth'], func
     Route::get('/edit/{id}', [UmkmController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [UmkmController::class, 'update'])->name('update');
     Route::post('/destroy/{id}', [UmkmController::class, 'delete'])->name('destroy');
+    Route::post('/registrasi', [UmkmController::class, 'regis'])->name('registrasi');
 });
 
 // route pamsimas

@@ -68,13 +68,17 @@
                                                 <td>{{ $value->akta }}</td>
                                                 <td>{{ $value->pam }}</td>
                                                 <td>
-                                                    @if ($value->regis != null)
+                                                    @if ($value->regis == 'sudah')
                                                         <div class="badge badge-pill badge-success mb-1 float-right">
                                                             Sudah Registrasi
                                                         </div>
-                                                    @else
+                                                    @elseif ($value->regis == 'belum')
                                                         <div onclick="verif({{ $value->id }})"
-                                                            class="badge badge-pill badge-danger mb-1 float-right">
+                                                            class="badge badge-pill badge-danger mb-1 float-right" style="cursor:pointer">
+                                                            Belum Verifikasi
+                                                        </div>
+                                                    @else
+                                                        <div class="badge badge-pill badge-warning mb-1 float-right">
                                                             Belum Registrasi
                                                         </div>
                                                     @endif
@@ -118,8 +122,8 @@
 @push('page_js')
     <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
     <script>
-         // nggo rubah status registrasi
-         function verif(id) {
+        // nggo rubah status registrasi
+        function verif(id) {
             $.ajax({
                 method: 'GET',
                 url: '/penduduk/verification/' + id,

@@ -124,6 +124,16 @@ class PendudukController extends Controller
         return redirect()->route('user.index');
     }
 
+    public function verif($id){
+        $data = Penduduk::findOrFail($id);
+
+        $data->regis = 'sudah';
+        if(!$data->save()){
+            return redirect()->route('penduduk.index')->with(['error' => 'Verifikasi Gagal!']);
+        }
+        return redirect()->route('penduduk.index')->with(['success' => 'Verifikasi berhasil!']);
+    }
+
     // hapus data penduduk
     public function delete($id)
     {

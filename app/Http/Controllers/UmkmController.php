@@ -97,4 +97,15 @@ class UmkmController extends Controller
             return redirect()->route('umkm.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
+
+    public function regis(Request $request){
+        $data = Penduduk::where('nik', $request->nik)->first();
+
+        $data->regis = 'Belum';
+
+        if(!$data->save()){
+            return redirect()->route('umkm.index')->with(['error' => 'Registrasi Gagal!']);
+        }
+        return redirect()->route('umkm.index')->with(['success' => 'Registrasi berhasil!']);
+    }
 }

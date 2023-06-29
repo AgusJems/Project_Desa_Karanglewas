@@ -109,8 +109,8 @@
                                         <h3 class="text-danger text-center mt-3">Mohon lengkapi biodata anda terlebih
                                             dahulu.</h3>
                                         <div class="text-center pt-1 pb-1">
-                                        <a href="{{ route('penduduk.edit', Auth::user()->penduduk->id) }}"
-                                            class="btn btn-primary">Biodata</a>
+                                            <a href="{{ route('penduduk.edit', Auth::user()->penduduk->id) }}"
+                                                class="btn btn-primary">Biodata</a>
                                         </div>
                                     @else
                                         <div class="author-box-description">

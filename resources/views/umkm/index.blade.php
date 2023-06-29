@@ -9,7 +9,13 @@
 @section('content')
     <section class="section">
         @if (Auth::user()->role == 'user')
-            @if (Auth::user()->penduduk->regis != null)
+            @if (Auth::user()->penduduk->regis == 'sudah')
+                <div class="section-header">
+                    <h1>Usaha Mikro Kecil Dan Menengah (UMKM)</h1>
+                    <div class="section-header-breadcrumb">
+                        <div class="breadcrumb-item">UMKM</div>
+                    </div>
+                </div>
                 <div class="section-body">
                     <h2 class="section-title">Produk UMKM Desa Karanglewas</h2>
                     <p class="section-lead">Example of some Bootstrap table components.</p>
@@ -209,6 +215,41 @@
                         </div>
                     </div>
                 </div>
+            @elseif (Auth::user()->penduduk->regis == 'belum')
+                <div class="section-header">
+                    <h1>Usaha Mikro Kecil Dan Menengah (UMKM)</h1>
+                    <div class="section-header-breadcrumb">
+                        <div class="breadcrumb-item">UMKM</div>
+                    </div>
+                </div>
+
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-6 col-lg-6">
+                            <div class="card">
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
+                                @if ($message = Session::get('error'))
+                                    <div class="alert alert-danger">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
+
+                                <!-- Fungsi kondisi error message/pringatan -->
+                                <div class="card-body">
+                                    <h1 class="text-center text-danger">Dalam Proses Verifikasi oleh Admin</h1>
+                                    <div class="text-center pt-1 pb-1">
+                                        {{-- {{ route('umkm.cs', Auth::user()->penduduk->id) }} --}}
+                                        <a href="" class="btn btn-primary">Hubungi Admin</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @else
                 <div class="section-header">
                     <h1>Registrasi Ijin Usaha</h1>
@@ -224,12 +265,12 @@
 
                                 <!-- Fungsi kondisi error message/pringatan -->
                                 <div class="card-body">
-                                    <form action="{{ route('penduduk.store') }}" method="post">
+                                    <form action="{{ route('umkm.registrasi') }}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <label for="nik">NIK</label>
                                             <input type="text" id="nik" name="nik" class="form-control"
-                                                required>
+                                                readonly value="{{ Auth::user()->penduduk->nik }}">
                                             @error('nik')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -241,7 +282,7 @@
                                         <div class="form-group">
                                             <label for="nama">Nama</label>
                                             <input type="text" id="nama" name="nama" class="form-control"
-                                                required>
+                                                readonly value="{{ Auth::user()->penduduk->nama }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="alamat">Alamat</label>
