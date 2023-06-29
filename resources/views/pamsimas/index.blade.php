@@ -22,6 +22,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Overview</h4>
+                        <div class="card-header-action">
+                            <a href="{{ route('pamsimas.create') }}" class="btn btn-icon icon-left btn-primary"><i
+                                class="fas fa-plus"></i>&nbsp;Bayar</a>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
@@ -118,10 +122,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Overview</h4>
-                        <div class="card-header-action">
-                                <a href="{{ route('pamsimas.create') }}" class="btn btn-icon icon-left btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;Bayar</a>
-                            </div>
                     </div>
                     <div class="card-body p-0">
                         <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
@@ -139,6 +139,7 @@
                                         <th>Tanggal</th>
                                         <th>Harga</th>
                                         <th>Status Pembayaran</th>
+                                        <th>Pembayaran</th>
                                     </tr>
                                     {{-- nampilna data pamsimas --}}
                                     @forelse ($pamsimas as $item)
@@ -157,6 +158,11 @@
                                                 Belum Bayar
                                             </div>
                                             @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="badge badge-pill badge-primary mb-1">
+                                                Bayar
+                                            </div>
                                         </td>
                                     </tr>
                                     {{-- nek data pamsimas kosong --}}
