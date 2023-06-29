@@ -5,7 +5,7 @@
 @section('content')
 <section class="section">
     {{-- tampilan user --}}
-    @if (Auth::user()->role == 'user')
+    @if (Auth::user()->role == 'admin')
     <div class="section-header">
         <h1>Pembayaran Pamsimas</h1>
         <div class="section-header-breadcrumb">
