@@ -99,6 +99,7 @@ class UmkmController extends Controller
     }
 
     public function regis(Request $request){
+
         $data = Penduduk::where('nik', $request->nik)->first();
 
         $data->regis = 'belum';
