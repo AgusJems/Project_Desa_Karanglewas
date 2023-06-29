@@ -2,13 +2,13 @@
 @extends('layouts.master')
 
 {{-- send nama page --}}
-@section('title', 'Bahan Jadi')
+@section('title', 'UMKM')
 {{-- send nama aplikasi --}}
 @section('appName', 'Website Desa')
 {{-- send tampilan umkm --}}
 @section('content')
 <section class="section">
-    @if (Auth::user()->role == 'user')
+    @if (Auth::user()->role == 'user' && )
     <div class="section-header">
         <h1>Registrasi Ijin Usaha</h1>
         <div class="section-header-breadcrumb">

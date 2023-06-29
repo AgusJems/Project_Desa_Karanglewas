@@ -15,6 +15,10 @@ class CreatePenjualansTable extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('umkm_id')->constrained()->cascadeOnDelete();
+            $table->string('jumlah');
+            $table->string('total');
             $table->timestamps();
         });
     }

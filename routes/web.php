@@ -75,6 +75,7 @@ Route::group(['prefix' => 'penduduk', 'as' => 'penduduk.', 'middleware' => 'auth
     Route::post('/update/{id}', [PendudukController::class, 'update'])->name('update');
     Route::post('/update2/{id}', [PendudukController::class, 'update2'])->name('update2');
     Route::post('/destroy/{id}', [PendudukController::class, 'delete'])->name('destroy');
+    Route::get('/verification/{id}', [PendudukController::class, 'verif'])->name('verification');
 });
 
 // route pkh

@@ -56,12 +56,6 @@
                                     <label for="nik">NIK</label>
                                     <input type="text" id="nik" name="nik" class="form-control"
                                         value="{{ $data->nik }}" required readonly>
-                                    {{-- @if (Auth::user()->role == 'admin')
-                                    <input type="text" id="nik" name="nik" class="form-control"
-                                        value="{{ $data->nik }}" required>
-                                    @else
-
-                                    @endif --}}
                                     @error('nik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -188,14 +182,14 @@
                                         <option value="Bukan Pengguna Pamsimas">Bukan Pengguna Pamsimas</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="reg">Registrasi</label>
                                     <select id="reg" name="pam" class="form-control" required>
                                         <option value="{{ $data->reg }}" disabled selected>{{ $data->reg }}</option>
                                         <option value="Sudah">Sudah Registrasi</option>
                                         <option value="Belum">Belum Registrasi</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="text-center pt-1 pb-1">
                                     <button class="btn btn-primary" type="submit">Simpan</button>
                                 </div>

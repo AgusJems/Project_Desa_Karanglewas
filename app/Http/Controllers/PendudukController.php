@@ -54,6 +54,7 @@ class PendudukController extends Controller
             $data->pendidikan = $request->pendidikan;
             $data->akta = $request->akta;
             $data->pam = $request->pam;
+            // $data->re = $request->pam;
             // $data->save();
 
             // jika data penduduk disimpan otomatis generate data vaksin nggo penduduk

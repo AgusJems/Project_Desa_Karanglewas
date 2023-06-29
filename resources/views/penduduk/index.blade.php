@@ -67,6 +67,18 @@
                                                 <td>{{ $value->agama }}</td>
                                                 <td>{{ $value->akta }}</td>
                                                 <td>{{ $value->pam }}</td>
+                                                <td>
+                                                    @if ($value->regis != null)
+                                                        <div class="badge badge-pill badge-success mb-1 float-right">
+                                                            Sudah Registrasi
+                                                        </div>
+                                                    @else
+                                                        <div onclick="verif({{ $value->id }})"
+                                                            class="badge badge-pill badge-danger mb-1 float-right">
+                                                            Belum Registrasi
+                                                        </div>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $value->reg }}</td>
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
@@ -105,4 +117,20 @@
 
 @push('page_js')
     <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
+    <script>
+         // nggo rubah status registrasi
+         function verif(id) {
+            $.ajax({
+                method: 'GET',
+                url: '/penduduk/verification/' + id,
+                cache: false,
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function() {
+                    window.location.href = `{{ route('penduduk.index') }}`;
+                }
+            });
+        }
+    </script>
 @endpush

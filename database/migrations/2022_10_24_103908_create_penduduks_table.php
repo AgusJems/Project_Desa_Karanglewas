@@ -18,15 +18,16 @@ class CreatePenduduksTable extends Migration
             $table->string('nik')->unique();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nama');
-            $table->string('alamat');
-            $table->string('tptLahir');
-            $table->string('tglLahir');
-            $table->string('kelamin');
-            $table->string('kawin');
-            $table->string('agama');
-            $table->string('pendidikan');
-            $table->string('akta')->unique();
-            $table->string('pam');
+            $table->string('alamat')->nullable();
+            $table->string('tptLahir')->nullable();
+            $table->string('tglLahir')->nullable();
+            $table->string('kelamin')->nullable();
+            $table->string('kawin')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('akta')->unique()->nullable();
+            $table->string('pam')->nullable();
+            $table->string('regis')->nullable();
             $table->timestamps();
         });
     }
