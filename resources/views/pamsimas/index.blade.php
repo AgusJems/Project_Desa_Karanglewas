@@ -159,9 +159,9 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <div onclick="bayarUser({{ $item->id }})" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
+                                            <a href="{{ route('pamsimas.upload') }}" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
                                                 Bayar
-                                            </div>
+                                            </a>
                                         </td>
                                         @endif
                                     </tr>

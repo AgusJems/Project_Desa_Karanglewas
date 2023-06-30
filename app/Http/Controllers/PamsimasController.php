@@ -65,6 +65,11 @@ class PamsimasController extends Controller
         return view('pamsimas.create', compact('penduduk'));
     }
 
+    public function upload()
+    {
+        return view('pamsimas.upload');
+    }
+
     public function payment($id) {
         $pay = Pam::find($id);
         $data = Penduduk::where('id', $pay->user_id)->first();
