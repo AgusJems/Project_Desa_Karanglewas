@@ -47,10 +47,7 @@
                                                     <th>No.</th>
                                                     <th>NIK</th>
                                                     <th>Nama Produk</th>
-                                                    <!-- <th>Lokasi</th> -->
-                                                    <!-- <th>Kategori</th> -->
                                                     <th>Gambar</th>
-                                                    <!-- <th>Nama Produk</th> -->
                                                     <th>Harga</th>
                                                     <th>Kategori</th>
                                                     <th>Satuan Penjualan</th>
@@ -61,13 +58,10 @@
                                                         <td>{{ ++$i }}</td>
                                                         <td>{{ $item->nik }}</td>
                                                         <td>{{ $item->produk }}</td>
-                                                        <!-- <td>{{ $item->lokasi }}</td> -->
-                                                        <!-- <td>{{ $item->kategori }}</td> -->
                                                         <td>
                                                             <img class="mb-3" src="/images/{{ $item->gambar }}"
                                                                 width="100px" alt="{{ $item->gambar }}">
                                                         </td>
-                                                        <!-- <td>{{ $item->produk }}</td> -->
                                                         <td>{{ $item->harga }}</td>
                                                         <td>{{ $item->kategori }}</td>
                                                         <td>{{ $item->satuan }}</td>
