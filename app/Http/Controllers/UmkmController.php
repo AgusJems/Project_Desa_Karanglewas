@@ -27,6 +27,13 @@ class UmkmController extends Controller
         return view('umkm.create', compact('penduduk'));
     }
 
+    public function create2()
+    {
+        $penduduk = Penduduk::latest()->get();
+
+        return view('umkm.create-penjualan', compact('penduduk'));
+    }
+
     // input data umkm
     public function store(Request $request)
     {

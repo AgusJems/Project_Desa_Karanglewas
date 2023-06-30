@@ -130,7 +130,7 @@
                                     {{-- tambah penjualan nggo user --}}
                                     @if (Auth()->user()->role == 'user')
                                         <div class="card-header-action">
-                                            <a href="{{ route('umkm.create') }}"
+                                            <a href="{{ route('umkm.create2') }}"
                                                 class="btn btn-icon icon-left btn-primary"><i
                                                     class="fas fa-plus"></i>&nbsp;Tambah Penjualan</a>
                                         </div>
@@ -316,7 +316,7 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Penjualan UMKM Desa Karanglewas</h2>
+                <h2 class="section-title">Produk UMKM Desa Karanglewas</h2>
                 <p class="section-lead">Example of some Bootstrap table components.</p>
 
                 <div class="row">
