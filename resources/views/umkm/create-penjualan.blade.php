@@ -12,7 +12,7 @@
 @endpush
 
 {{-- send nama page --}}
-@section('title', 'Input Umkm')
+@section('title', 'Input Penjualan')
 {{-- send nama aplikasi --}}
 @section('appName', 'Web Desa')
 {{-- send tampilan form input umkm --}}
@@ -41,34 +41,34 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('umkm.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('umkm.transaction') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nik">NIK</label>
-                                    <select type="text" id="nik" name="nik" class="form-control" required
+                                    <label for="produk">Produk</label>
+                                    <select type="text" id="produk" name="produk" class="form-control" required
                                         onchange="getData(this)">
-                                        <option disabled selected>--Pilih NIK--</option>
-                                        @foreach ($penduduk as $item)
-                                            <option value="{{ $item->user_id }}">{{ $item->nik }} ({{ $item->nama }})
+                                        <option disabled selected>--Pilih Produk--</option>
+                                        @foreach ($produk as $item)
+                                            <option value="{{ $item->id }}">{{ $item->produk }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="nama">Nama Produsen</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" disabled>
-                                </div>
+                                    <input type="text" id="nama" name="nama" class="form-control" value="{{Auth::user()->penduduk->nama}}" disabled>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="qty">Qty</label>
-                                    <input type="text" id="qty" name="qty" class="form-control" required>
+                                    <input type="number" id="qty" name="qty" class="form-control" oninput="calcTotal(event)" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="harga">Harga</label>
-                                    <input type="text" id="harga" name="harga" class="form-control" required>
+                                    <input type="text" id="harga" name="harga" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="total">Total Penjualan</label>
-                                    <input type="text" id="total" name="total" class="form-control" required>
+                                    <input type="text" id="total" name="total" class="form-control" readonly>
                                 </div>
 
                                 <div class="text-center pt-1 pb-1">
@@ -98,19 +98,28 @@
 @push('page_js')
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
     <script>
-        // fungsi njukut data nik sekang database penduduk
-        function getData(nik) {
-            let user_id = nik.value;
+
+        function calcTotal(bct) {
+            let qty = bct.target.value;
+            let harga = $('#harga').val();
+            let total = parseInt(qty) * parseInt(harga);
+            $('#total').val(total);
+        }
+
+        // fungsi njukut data produk sekang database penduduk
+        function getData(produk) {
+            let produk_id = produk.value;
             $.ajax({
                 method: 'GET',
-                url: '/admin/getData/' + user_id,
+                url: '/umkm/getProduk/' + produk_id,
                 cache: false,
                 data: {
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(result) {
-                    console.log(result); //for testing
+                    // alert(result); //for testing
                     $('#nama').val(result['nama']);
+                    $('#harga').val(result['harga']);
                 }
             });
         }

@@ -12,7 +12,7 @@
 @endpush
 
 {{-- send nama page --}}
-@section('title', 'Input Umkm')
+@section('title', 'Input Produk')
 {{-- send nama aplikasi --}}
 @section('appName', 'Web Desa')
 {{-- send tampilan form input umkm --}}
@@ -43,7 +43,7 @@
                             @endif
                             <form action="{{ route('umkm.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="nik">NIK</label>
                                     <select type="text" id="nik" name="nik" class="form-control" required
                                         onchange="getData(this)">
@@ -57,6 +57,10 @@
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" id="nama" name="nama" class="form-control" disabled>
+                                </div> --}}
+                                <div class="form-group">
+                                    <label for="produk">Nama Produk</label>
+                                    <input type="text" id="produk" name="produk" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="lokasi">Lokasi</label>
@@ -80,10 +84,6 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="produk">Nama Produk</label>
-                                    <input type="text" id="produk" name="produk" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="telpon">Nomor telepon / WA</label>
@@ -130,10 +130,12 @@
 
 @push('page_js')
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
+
+    <!-- Fungsi njiot data kang penduduk -->
     <script>
-        // fungsi njukut data nik sekang database penduduk
         function getData(nik) {
             let user_id = nik.value;
+            // alert(user_id)
             $.ajax({
                 method: 'GET',
                 url: '/admin/getData/' + user_id,
@@ -142,7 +144,7 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(result) {
-                    console.log(result); //for testing
+                    // alert(result);
                     $('#nama').val(result['nama']);
                 }
             });

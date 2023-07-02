@@ -33,6 +33,7 @@ class DashboardController extends Controller
     public function getData($user_id)
     {
         // nggo ngambil data penduduk sesuai nik sing dipilih
+        dd($user_id);
         $data = Penduduk::where('user_id', $user_id)->first();
         // mbalekna data dalam bentuk json, karena di request kang ajax
         return response()->json($data, 200);

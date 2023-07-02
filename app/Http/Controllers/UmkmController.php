@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
+use App\Models\Penjualan;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UmkmController extends Controller
 {
@@ -15,7 +17,12 @@ class UmkmController extends Controller
             ->select('umkms.*', 'penduduks.nik', 'penduduks.nama')
             ->latest()
             ->paginate(10);
-        return view('umkm.index', compact('umkms'))
+        $penjualan = Umkm::join('penjualans', 'umkms.id', '=', 'penjualans.umkm_id')
+            ->join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')
+            ->select('penjualans.*', 'penduduks.nik', 'penduduks.nama', 'umkms.harga')
+            ->latest()
+            ->paginate(10);
+        return view('umkm.index', compact('umkms', 'penjualan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -29,9 +36,8 @@ class UmkmController extends Controller
 
     public function create2()
     {
-        $penduduk = Penduduk::latest()->get();
-
-        return view('umkm.create-penjualan', compact('penduduk'));
+        $produk = Umkm::where('user_id', Auth::user()->id)->get();
+        return view('umkm.create-penjualan', compact('produk'));
     }
 
     // input data umkm
@@ -45,7 +51,7 @@ class UmkmController extends Controller
         }
 
         $umkm = new Umkm();
-        $umkm->user_id = $request->nik;
+        $umkm->user_id = Auth::user()->id;
         $umkm->lokasi = $request->lokasi;
         $umkm->kategori = $request->kategori;
         $umkm->produk = $request->produk;
@@ -105,15 +111,37 @@ class UmkmController extends Controller
         }
     }
 
-    public function regis(Request $request){
+    public function regis(Request $request)
+    {
 
         $data = Penduduk::where('nik', $request->nik)->first();
 
         $data->regis = 'belum';
 
-        if(!$data->save()){
+        if (!$data->save()) {
             return redirect()->route('umkm.index')->with(['error' => 'Registrasi Gagal!']);
         }
         return redirect()->route('umkm.index')->with(['success' => 'Registrasi berhasil!']);
+    }
+
+    public function getProduk($id)
+    {
+        // nggo ngambil detail produk sesuai produk sing dipilih
+        $produk = Umkm::findOrFail($id);
+        // dd($data);
+        // mbalekna data dalam bentuk json, karena di request kang ajax
+        return response()->json($produk, 200);
+    }
+
+    public function penjualan(Request $request){
+
+        $data = new Penjualan();
+        $data->user_id = Auth::user()->id;
+        $data->umkm_id = $request->produk;
+        $data->jumlah = $request->qty;
+        $data->total = $request->total;
+        $data->save();
+
+        return redirect()->route('umkm.index')->with(['success' => 'Data penjuan berhasil dimasukkan.']);
     }
 }

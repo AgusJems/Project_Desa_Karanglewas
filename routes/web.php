@@ -105,10 +105,12 @@ Route::group(['prefix' => 'umkm', 'as' => 'umkm.', 'middleware' => 'auth'], func
     Route::get('/create', [UmkmController::class, 'create'])->name('create');
     Route::get('/create2', [UmkmController::class, 'create2'])->name('create2');
     Route::post('/create', [UmkmController::class, 'store'])->name('store');
+    Route::post('/create/transaction', [UmkmController::class, 'penjualan'])->name('transaction');
     Route::get('/edit/{id}', [UmkmController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [UmkmController::class, 'update'])->name('update');
     Route::post('/destroy/{id}', [UmkmController::class, 'delete'])->name('destroy');
     Route::post('/registrasi', [UmkmController::class, 'regis'])->name('registrasi');
+    Route::get('/getProduk/{produk_id}', [UmkmController::class, 'getProduk'])->name('produk');
 });
 
 // route pamsimas

@@ -25,14 +25,10 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Data Produk</h4>
-                                    {{-- tambah produk nggo user --}}
-                                    @if (Auth()->user()->role == 'user')
-                                        <div class="card-header-action">
-                                            <a href="{{ route('umkm.create') }}"
-                                                class="btn btn-icon icon-left btn-primary"><i
-                                                    class="fas fa-plus"></i>&nbsp;Tambah Produk</a>
-                                        </div>
-                                    @endif
+                                    <div class="card-header-action">
+                                        <a href="{{ route('umkm.create') }}" class="btn btn-icon icon-left btn-primary"><i
+                                                class="fas fa-plus"></i>&nbsp;Tambah Produk</a>
+                                    </div>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
@@ -145,26 +141,20 @@
                                                     <th>No.</th>
                                                     <th>NIK</th>
                                                     <th>Nama Produsen</th>
-                                                    <!-- <th>Lokasi</th> -->
-                                                    <!-- <th>Kategori</th> -->
                                                     <th>Qty</th>
-                                                    <!-- <th>Nama Produk</th> -->
                                                     <th>Harga</th>
                                                     <th>Total Penjualan</th>
-                                                    <th>Action</th>
+                                                    {{-- <th>Action</th> --}}
                                                 </tr>
-                                                @forelse ($umkms as $item)
+                                                @forelse ($penjualan as $item)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
                                                         <td>{{ $item->nik }}</td>
                                                         <td>{{ $item->nama }}</td>
-                                                        <!-- <td>{{ $item->lokasi }}</td> -->
-                                                        <!-- <td>{{ $item->kategori }}</td> -->
-                                                        <!-- <td>{{ $item->produk }}</td> -->
-                                                        <td>{{ $item->qty }}</td>
+                                                        <td>{{ $item->jumlah }}</td>
                                                         <td>{{ $item->harga }}</td>
                                                         <td>{{ $item->total }}</td>
-                                                        <td>
+                                                        {{-- <td>
                                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                                 action="{{ route('umkm.destroy', $item->id) }}"
                                                                 method="POST">
@@ -176,7 +166,7 @@
                                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                                         class="fas fa-trash"></i></button>
                                                             </form>
-                                                        </td>
+                                                        </td> --}}
                                                     </tr>
                                                 @empty
                                                     <div class="alert alert-danger">
