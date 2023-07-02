@@ -42,8 +42,8 @@
                                         <th>Bulan</th>
                                         <th>Tanggal</th>
                                         <th>Harga</th>
-                                        <th>Status Pembayaran</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Status Pembayaran</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                     {{-- nampilna data pamsimas --}}
                                     @forelse ($pamsimas as $item)
@@ -52,22 +52,20 @@
                                         <td>{{ $item->bulan }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @if ($item->status == 'sudah')
-                                            <div class="badge badge-pill badge-success mb-1 float-right">
+                                            <div class="badge badge-pill badge-success mb-1">
                                                 Sudah Bayar
                                             </div>
                                             @else
-                                            <div onclick="bayar({{ $item->id }})" class="badge badge-pill badge-danger mb-1 float-right">
+                                            <div onclick="bayar({{ $item->id }})" class="badge badge-pill badge-danger mb-1">
                                                 Belum Bayar
                                             </div>
                                             @endif
                                         </td>
-                                        <td>
-                                            <div class="form-group text-center">
-                                                <button type="submit" class="btn btn-primary btn-lg mr-2" tabindex="4">
-                                                    ACC Pembayaran
-                                                </button>
+                                        <td class="text-center">
+                                            <div class="badge badge-pill badge-primary mb-1">
+                                                ACC Pembayaran
                                             </div>
                                         </td>
                                     </tr>

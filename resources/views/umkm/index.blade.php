@@ -46,6 +46,7 @@
                                                 <tr>
                                                     <th>No.</th>
                                                     <th>NIK</th>
+                                                    <th>Nama</th>
                                                     <th>Nama Produk</th>
                                                     <th>Gambar</th>
                                                     <th>Harga</th>
@@ -57,6 +58,7 @@
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
                                                         <td>{{ $item->nik }}</td>
+                                                        <td>{{ $item->nama }}</td>
                                                         <td>{{ $item->produk }}</td>
                                                         <td>
                                                             <img class="mb-3" src="/images/{{ $item->gambar }}"
