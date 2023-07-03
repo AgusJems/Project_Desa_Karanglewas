@@ -324,31 +324,25 @@
                                                 <th>No.</th>
                                                 <th>NIK</th>
                                                 <th>Nama Produk</th>
-                                                <!-- <th>Lokasi</th> -->
-                                                <!-- <th>Kategori</th> -->
                                                 <th>Gambar</th>
-                                                <!-- <th>Nama Produk</th> -->
                                                 <th>Harga</th>
                                                 <th>Kategori</th>
                                                 <th>Satuan Penjualan</th>
-                                                <th>Action</th>
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                             @forelse ($umkms as $item)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
                                                     <td>{{ $item->nik }}</td>
                                                     <td>{{ $item->produk }}</td>
-                                                    <!-- <td>{{ $item->lokasi }}</td> -->
-                                                    <!-- <td>{{ $item->kategori }}</td> -->
                                                     <td>
                                                         <img class="mb-3" src="/images/{{ $item->gambar }}"
                                                             width="100px" alt="{{ $item->gambar }}">
                                                     </td>
-                                                    <!-- <td>{{ $item->produk }}</td> -->
                                                     <td>{{ $item->harga }}</td>
                                                     <td>{{ $item->kategori }}</td>
                                                     <td>{{ $item->satuan }}</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                             action="{{ route('umkm.destroy', $item->id) }}"
                                                             method="POST">
@@ -360,7 +354,7 @@
                                                             <button type="submit" class="btn btn-sm btn-danger"><i
                                                                     class="fas fa-trash"></i></button>
                                                         </form>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                             @empty
                                                 <div class="alert alert-danger">

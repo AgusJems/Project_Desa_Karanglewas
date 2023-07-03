@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="harga">Harga</label>
-                                    <input type="text" id="harga" name="harga" class="form-control" required>
+                                    <input type="number" id="harga" name="harga" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="satuan">Satuan Penjualan</label>

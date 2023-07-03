@@ -42,6 +42,7 @@
                                         <th>Bulan</th>
                                         <th>Tanggal</th>
                                         <th>Harga</th>
+                                        <th>Bukti Pembayaran</th>
                                         <th class="text-center">Status Pembayaran</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -52,6 +53,10 @@
                                         <td>{{ $item->bulan }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>
+                                        <td>
+                                            <img class="mb-3" src="/images/{{ $item->bukti }}"
+                                            width="100px" alt="{{ $item->bukti }}">
+                                        </td>
                                         <td class="text-center">
                                             @if ($item->status == 'sudah')
                                             <div class="badge badge-pill badge-success mb-1">
