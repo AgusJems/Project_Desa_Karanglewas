@@ -20,6 +20,7 @@ class CreatePamsTable extends Migration
             $table->string('tanggal')->nullable();
             $table->string('harga');
             $table->string('status');
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

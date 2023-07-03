@@ -162,9 +162,11 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('pamsimas.upload') }}" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
+                                            {{-- <div onclick="bayarUser({{ $item->id }})" class="badge badge-pill badge-primary mb-1" style="cursor:pointer"> --}}
+                                            <a href="{{ route('pamsimas.upload', $item->id) }}" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
                                                 Bayar
                                             </a>
+                                            {{-- </div> --}}
                                         </td>
                                         @endif
                                     </tr>
@@ -204,7 +206,7 @@
 @endsection
 
 @push('plugins_js')
-<script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<script src="node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
 @endpush
 
 @push('page_js')

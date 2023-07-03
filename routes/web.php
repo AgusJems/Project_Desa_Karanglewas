@@ -117,7 +117,8 @@ Route::group(['prefix' => 'umkm', 'as' => 'umkm.', 'middleware' => 'auth'], func
 Route::group(['prefix' => 'pamsimas', 'as' => 'pamsimas.', 'middleware' => 'auth'], function () {
     Route::get('/', [PamsimasController::class, 'index'])->name('index');
     Route::get('/create', [PamsimasController::class, 'create'])->name('create');
-    Route::get('/upload', [PamsimasController::class, 'upload'])->name('upload');
+    Route::get('/upload/{id}', [PamsimasController::class, 'upload'])->name('upload');
+    Route::post('/uploadProcess', [PamsimasController::class, 'upProcess'])->name('uploadProcess');
     Route::post('/store', [PamsimasController::class, 'store'])->name('store');
     Route::get('/payment/{id}', [PamsimasController::class, 'payment'])->name('payment');
     Route::get('/paymentConfirmation/{id}', [PamsimasController::class, 'confirm'])->name('confirm');

@@ -21,10 +21,12 @@
                     <div class="col-xl-12 col-md-6 col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('pamsimas.upload') }}" method="post">
+                                <form action="{{ route('pamsimas.uploadProcess') }}" method="post">
                                     @csrf
+
                                     <div class="form-group">
                                         <label for="image">Upload Gambar</label>
+                                        <input type="hidden" name="id" id="id" value="{{$id}}">
                                         <input type="file" id="image" name="image" class="form-control" required
                                             accept=".png, .jpg, .jpeg">
                                         @error('image')

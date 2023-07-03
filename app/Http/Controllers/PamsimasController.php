@@ -65,9 +65,23 @@ class PamsimasController extends Controller
         return view('pamsimas.create', compact('penduduk'));
     }
 
-    public function upload()
+    public function upload($id)
     {
-        return view('pamsimas.upload');
+        return view('pamsimas.upload', compact('id'));
+    }
+
+    public function upProcess(Request $request) {
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $productImage);
+            $request->image = "$productImage";
+        }
+
+        $bayar = Pam::whereId($request->id)->update(['gambar' => $request->image]);
+
+        return redirect()->route('pamsimas.index')->with('success', 'Bukti Pembayaran telah Dikirimkan');
     }
 
     public function payment($id) {
