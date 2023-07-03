@@ -1,5 +1,14 @@
 @extends('layouts.master')
 
+@push('plugins_css')
+    <link rel="stylesheet" href="node_modules/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="node_modules/selectric/public/selectric.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+@endpush
+
 @section('title', 'pamsimas')
 @section('appName', 'Website Desa')
 @section('content')
@@ -21,12 +30,10 @@
                     <div class="col-xl-12 col-md-6 col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('pamsimas.uploadProcess') }}" method="post">
+                                <form action="{{ route('pamsimas.uploadProcess') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-
                                     <div class="form-group">
                                         <label for="image">Upload Gambar</label>
-                                        <input type="hidden" name="id" id="id" value="{{$id}}">
                                         <input type="file" id="image" name="image" class="form-control" required
                                             accept=".png, .jpg, .jpeg">
                                         @error('image')
@@ -35,6 +42,7 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    <input type="hidden" name="id" id="id" value="{{ $id }}">
                                     <div class="float-right pt-1 pb-1">
                                         <button class="btn btn-primary" type="submit">Bayar</button>
                                     </div>
@@ -49,7 +57,15 @@
 @endsection
 
 @push('plugins_js')
-    <script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script src="node_modules/cleave.js/dist/cleave.min.js"></script>
+    <script src="node_modules/cleave.js/dist/addons/cleave-phone.us.js"></script>
+    <script src="node_modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+    <script src="node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script src="node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script src="node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="node_modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="node_modules/selectric/public/jquery.selectric.min.js"></script>
 @endpush
 
 @push('page_js')

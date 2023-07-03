@@ -54,8 +54,8 @@
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td>
-                                            <img class="mb-3" src="/images/{{ $item->bukti }}"
-                                            width="100px" alt="{{ $item->bukti }}">
+                                            <img class="mb-3" src="{{ asset('/images/'.$item->gambar) }}"
+                                            width="100px" alt="{{ $item->gambar }}">
                                         </td>
                                         <td class="text-center">
                                             @if ($item->status == 'sudah')
@@ -63,13 +63,13 @@
                                                 Sudah Bayar
                                             </div>
                                             @else
-                                            <div onclick="bayar({{ $item->id }})" class="badge badge-pill badge-danger mb-1">
+                                            <div class="badge badge-pill badge-danger mb-1">
                                                 Belum Bayar
                                             </div>
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <div class="badge badge-pill badge-primary mb-1">
+                                            <div onclick="bayar({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-primary mb-1">
                                                 ACC Pembayaran
                                             </div>
                                         </td>
@@ -162,11 +162,9 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            {{-- <div onclick="bayarUser({{ $item->id }})" class="badge badge-pill badge-primary mb-1" style="cursor:pointer"> --}}
                                             <a href="{{ route('pamsimas.upload', $item->id) }}" class="badge badge-pill badge-primary mb-1" style="cursor:pointer">
                                                 Bayar
                                             </a>
-                                            {{-- </div> --}}
                                         </td>
                                         @endif
                                     </tr>
@@ -230,17 +228,6 @@
             },
             success: function() {
                 window.location.href = `{{ route('pamsimas.index') }}`;
-            }
-        });
-    }
-
-    function bayarUser(id) {
-        $.ajax({
-            method: 'GET',
-            url: '/pamsimas/payment/' + id,
-            cache: false,
-            data: {
-                _token: "{{ csrf_token() }}"
             }
         });
     }

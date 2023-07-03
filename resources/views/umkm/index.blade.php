@@ -57,7 +57,7 @@
                                                         <td>{{ $item->nama }}</td>
                                                         <td>{{ $item->produk }}</td>
                                                         <td>
-                                                            <img class="mb-3" src="/images/{{ $item->gambar }}"
+                                                            <img class="mb-3" src="{{ asset('/images/'.$item->gambar) }}"
                                                                 width="100px" alt="{{ $item->gambar }}">
                                                         </td>
                                                         <td>{{ $item->harga }}</td>

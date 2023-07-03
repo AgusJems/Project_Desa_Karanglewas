@@ -43,7 +43,7 @@ class PamsimasController extends Controller
         $pam->status = 'belum';
         // nek data disimpan direct wa ke nomor admin
         if ($pam->save()) {
-            return redirect()->route('pamsimas.index')->with('success', 'Pembayaran pamsimas atas nama, '.$request->nama.' berhasil di atur');
+            return redirect()->route('pamsimas.index')->with('success', 'Pembayaran pamsimas atas nama, ' . $request->nama . ' berhasil di atur');
         }
         //ganti nomor telepon sesuai dengan nomor admiin
     }
@@ -70,21 +70,23 @@ class PamsimasController extends Controller
         return view('pamsimas.upload', compact('id'));
     }
 
-    public function upProcess(Request $request) {
-
+    public function upProcess(Request $request)
+    {
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $productImage);
             $request->image = "$productImage";
+
+            $bayar = Pam::whereId($request->id)->update(['gambar' => $request->image]);
+            return redirect()->route('pamsimas.index')->with('success', 'Bukti Pembayaran Berhasil Di Upload');
+        } else {
+            return redirect()->route('pamsimas.index')->with('success', 'Bukti Pembayaran Gagal Di Upload');
         }
-
-        $bayar = Pam::whereId($request->id)->update(['gambar' => $request->image]);
-
-        return redirect()->route('pamsimas.index')->with('success', 'Bukti Pembayaran telah Dikirimkan');
     }
 
-    public function payment($id) {
+    public function payment($id)
+    {
         $pay = Pam::find($id);
         $data = Penduduk::where('id', $pay->user_id)->first();
 

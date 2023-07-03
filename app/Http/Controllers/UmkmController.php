@@ -133,7 +133,8 @@ class UmkmController extends Controller
         return response()->json($produk, 200);
     }
 
-    public function penjualan(Request $request){
+    public function penjualan(Request $request)
+    {
 
         $data = new Penjualan();
         $data->user_id = Auth::user()->id;
