@@ -135,6 +135,11 @@
                                                         <td class="text-success">Sudah Vaksin</td>
                                                     @endif
                                                 </tr>
+                                                <tr>
+                                                    <th>Status Bantuan PKH</th>
+                                                        <td class="text-danger">Belum Menerima Bantuan PKH</td>
+                                                        <td class="text-success">Sudah Menerima di Tanggal</td>
+                                                </tr>
                                             </table>
                                         </div>
                                     @endif

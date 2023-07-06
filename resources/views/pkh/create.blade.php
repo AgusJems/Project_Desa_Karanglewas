@@ -96,8 +96,30 @@
                                     <label for="penerimaan">Penerimaan PKH</label>
                                     <select id="penerimaan" name="penerimaan" class="form-control" required>
                                         <option disabled selected>--Pilih Penerimaan--</option>
-                                        <option value="sudah"> Sudah Menerima </option>
-                                        <option value="belum"> Belum Menerima </option>
+                                        <option value="sudah"> Akan Menerima </option>
+                                        <option value="belum"> Tidak Menerima </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="penerimaan">Tahap Bantuan</label>
+                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
+                                        <option disabled selected>--Pilih Tahap--</option>
+                                        <option value="tahap1"> Tahap 1 </option>
+                                        <option value="tahap2"> Tahap 2 </option>
+                                        <option value="tahap3"> Tahap 3 </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="penerimaan">Jenis Nominal Bantuan</label>
+                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
+                                        <option disabled selected>--Pilih Jenis Nominal Bantuan--</option>
+                                        <option value="ibuhamil"> IBU HAMIL </option>
+                                        <option value="batila"> BALITA / ANANK USIA DINI </option>
+                                        <option value="sd"> SISWA SD </option>
+                                        <option value="smp"> SISWA SMP </option>
+                                        <option value="sma"> SISWA SMA </option>
+                                        <option value="lansia"> LANSIA </option>
+                                        <option value="penyandang"> PENYANDANG DISABILITAS </option>
                                     </select>
                                 </div>
                                 <div class="text-center pt-1 pb-1">

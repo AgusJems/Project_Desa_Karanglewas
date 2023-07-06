@@ -48,7 +48,9 @@
                                             <th>Kendaraan</th>
                                             <th>Pendapatan /Bulan</th>
                                             <th>Penerimaan PKH</th>
-                                            <th>Regsitrasi</th>
+                                            <th>Jenis Bantuan</th>
+                                            <th>Tahap Bantuan</th>
+                                            <th>Nominal Bantuan</th>
                                             <th>Action</th>
                                         </tr>
                                         @forelse ($pkh as $value)
@@ -81,9 +83,11 @@
                                                                 Belum Menerima
                                                             </div>
                                                         @endif
-                                                    </td>
+                                                </td>
 
-                                                <td>{{ $value->penerimaan }}</td>
+                                                <td>{{ $value->jnsBantuan }}</td>
+                                                <td>{{ $value->thpBantuan }}</td>
+                                                <td>{{ $value->nmlBantuan }}</td>
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('pkh.destroy', $value->id) }}"

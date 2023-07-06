@@ -101,6 +101,17 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label>Select2 Multiple</label>
+                                    <select class="form-control select2" multiple="">
+                                        <option selected="selected">Option 1</option>
+                                        <option>Option 2</option>
+                                        <option>Option 3</option>
+                                        <option>Option 4</option>
+                                        <option>Option 5</option>
+                                        <option>Option 6</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="vaksin">Status Vaksin</label>
                                     <select id="vaksin" name="vaksin" class="form-control" required>
                                         <option>--Pilih Status Vaksin--</option>

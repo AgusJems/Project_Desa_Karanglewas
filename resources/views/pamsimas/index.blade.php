@@ -24,7 +24,7 @@
                         <h4>Overview</h4>
                         <div class="card-header-action">
                             <a href="{{ route('pamsimas.create') }}" class="btn btn-icon icon-left btn-primary"><i
-                                class="fas fa-plus"></i>&nbsp;Bayar</a>
+                                class="fas fa-plus"></i>&nbsp;Buat Tagihan</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
