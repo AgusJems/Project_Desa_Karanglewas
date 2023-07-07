@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="node_modules/selectric/public/selectric.css">
     <link rel="stylesheet" href="node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 {{-- send nama page --}}
@@ -83,7 +84,7 @@
                                     <label for="telepon">Nomor Handphone</label>
                                     <input type="text" id="telepon" name="telepon" class="form-control" required>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="penyakit">Riwayat Penyakit</label>
                                     <select id="penyakit" name="penyakit" class="form-control" required>
                                         <option>--Pilih Riwayat Penyakit--</option>
@@ -99,16 +100,21 @@
                                         <option value="Ginjal Kronis">Ginjal Kronis</option>
                                         <option value="Tidak Ada">Tidak Ada</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
-                                    <label>Select2 Multiple</label>
-                                    <select class="form-control select2" multiple="">
-                                        <option selected="selected">Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
-                                        <option>Option 4</option>
-                                        <option>Option 5</option>
-                                        <option>Option 6</option>
+                                    <label for="penyakit">Riwayat Penyakit</label>
+                                    <select class="js-example-basic-single" multiple name="Penyakit[]">
+                                        <option value="Demam">Demam</option>
+                                        <option value="Jantung">Jantung</option>
+                                        <option value="Lupus">Lupus</option>
+                                        <option value="Positif Covid-19">Positif Covid-19</option>
+                                        <option value="Alergi Parah Setelah Dosis Pertama">Alergi Dosis Pertama</option>
+                                        <option value="Pembekuan Darah">Pembekuan Darah</option>
+                                        <option value="Darah Tinggi">Darah Tinggi</option>
+                                        <option value="Kanker">Kanker</option>
+                                        <option value="HIV">HIV</option>
+                                        <option value="Ginjal Kronis">Ginjal Kronis</option>
+                                        <option value="Tidak Ada">Tidak Ada</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -147,6 +153,8 @@
 
 @push('page_js')
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Fungsi njiot data kang penduduk -->
     <script>
@@ -169,5 +177,13 @@
                 }
             });
         }
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        $('.js-example-basic-single').select2({
+            theme: "classic"
+        });
+    });
     </script>
 @endpush
