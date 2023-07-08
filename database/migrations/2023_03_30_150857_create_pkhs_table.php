@@ -19,7 +19,13 @@ class CreatePkhsTable extends Migration
             $table->string('anak');
             $table->string('kendaraan');
             $table->string('pendapatan');
-            $table->string('penerimaan');
+            $table->string('jenis')->nullable();
+            $table->string('nominal')->nullable();
+            $table->string('status');
+            $table->string('tahap1')->nullable();
+            $table->string('tahap2')->nullable();
+            $table->string('tahap3')->nullable();
+            $table->string('tahap4')->nullable();
             $table->timestamps();
         });
     }

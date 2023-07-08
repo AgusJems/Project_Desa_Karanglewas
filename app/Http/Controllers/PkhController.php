@@ -29,13 +29,33 @@ class PKHController extends Controller
         // dd($request->all());
         if ($pkh) {
             return redirect()->route('pkh.index')->with('failed', 'Data PKH Sudah Tersedia');
-        }else {
+        } else {
             $data = new Pkh();
             $data->user_id = $request->nik;
             $data->anak = $request->anak;
             $data->kendaraan = $request->kendaraan;
             $data->pendapatan = $request->pendapatan;
-            $data->penerimaan = $request->penerimaan;
+            $data->status = $request->status;
+            if ($request->status == 'akan') {
+                $data->jenis = $request->jenis;
+                if ($request->jenis == 'ibuhamil') {
+                    $data->nominal = '750000';
+                } elseif ($request->jenis == 'balita') {
+                    $data->nominal = '750000';
+                }elseif ($request->jenis == 'sd') {
+                    $data->nominal = '225000';
+                }elseif ($request->jenis == 'smp') {
+                    $data->nominal = '375000';
+                }elseif ($request->jenis == 'sma') {
+                    $data->nominal = '500000';
+                }elseif ($request->jenis == 'lansia') {
+                    $data->nominal = '600000';
+                }elseif ($request->jenis == 'disabilitas') {
+                    $data->nominal = '600000';
+                }else {
+                    $data->nominal = null;
+                }
+            }
             $data->save();
 
             return redirect()->route('pkh.index')->with('success', 'Data PKH Berhasil Disimpan');
@@ -70,5 +90,4 @@ class PKHController extends Controller
 
         return redirect()->route('pkh.index')->with('success', 'Status Penerimaan PKH Berhasil Diubah');
     }
-
 }

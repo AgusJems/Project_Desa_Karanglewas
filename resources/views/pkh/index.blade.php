@@ -47,10 +47,13 @@
                                             <th>Anak</th>
                                             <th>Kendaraan</th>
                                             <th>Pendapatan /Bulan</th>
-                                            <th>Penerimaan PKH</th>
+                                            <th>Status PKH</th>
                                             <th>Jenis Bantuan</th>
-                                            <th>Tahap Bantuan</th>
                                             <th>Nominal Bantuan</th>
+                                            <th>Tahap 1</th>
+                                            <th>Tahap 2</th>
+                                            <th>Tahap 3</th>
+                                            <th>Tahap 4</th>
                                             <th>Action</th>
                                         </tr>
                                         @forelse ($pkh as $value)
@@ -62,36 +65,82 @@
                                                 <td>{{ $value->anak }}</td>
                                                 <td>{{ $value->kendaraan }}</td>
 
-                                                @if($value->pendapatan === 'golongan1')
-                                                <td> < 1 Juta </td>
-                                                @elseif($value->pendapatan === 'golongan2')
-                                                <td> < 3 Juta </td>
-                                                @elseif($value->pendapatan === 'golongan3')
-                                                <td> < 5 Juta </td>
-                                                @elseif($value->pendapatan === 'golongan4')
-                                                <td> > 5 Juta </td>
+                                                @if ($value->pendapatan === 'gol1')
+                                                    <td>
+                                                        < 1 Juta </td>
+                                                        @elseif($value->pendapatan === 'gol2')
+                                                    <td>
+                                                        < 3 Juta </td>
+                                                        @elseif($value->pendapatan === 'gol3')
+                                                    <td>
+                                                        < 5 Juta </td>
+                                                        @elseif($value->pendapatan === 'gol4')
+                                                    <td> > 5 Juta </td>
                                                 @endif
 
                                                 <td>
-                                                        @if ($value->penerimaan == 'sudah')
-                                                            <div class="badge badge-pill badge-success mb-1">
-                                                                Sudah Menerima
-                                                            </div>
-                                                        @else
-                                                            <div onclick="terima({{ $value->id }})"
-                                                                class="badge badge-pill badge-danger mb-1">
-                                                                Belum Menerima
-                                                            </div>
-                                                        @endif
+                                                    @if ($value->penerimaan == 'akan')
+                                                        {{-- <div class="badge badge-pill badge-success mb-1"> --}}
+                                                            Sudah Menerima
+                                                        {{-- </div> --}}
+                                                    @else
+                                                        {{-- <div class="badge badge-pill badge-danger mb-1"> --}}
+                                                            Belum Menerima
+                                                        {{-- </div> --}}
+                                                    @endif
                                                 </td>
 
-                                                <td>{{ $value->jnsBantuan }}</td>
-                                                <td>{{ $value->thpBantuan }}</td>
-                                                <td>{{ $value->nmlBantuan }}</td>
+                                                <td>{{ $value->jenis }}</td>
+                                                <td>{{ $value->nominal }}</td>
+                                                @if (isset($value->tahap1))
+                                                    <td>{{ $value->tahap1 }}</td>
+                                                    @if ($value->tahap2)
+                                                        <td>{{ $value->tahap2 }}</td>
+                                                        @if ($value->tahap3)
+                                                            <td>{{ $value->tahap3 }}</td>
+                                                            @if ($value->tahap4)
+                                                                <td>{{ $value->tahap4 }}</td>
+                                                            @else
+                                                                <td>
+                                                                    <div onclick="terima({{ $value->id }})"
+                                                                        class="badge badge-pill badge-success mb-1">
+                                                                        Terima
+                                                                    </div>
+                                                                </td>
+                                                            @endif
+                                                        @else
+                                                            <td>
+                                                                <div onclick="terima({{ $value->id }})"
+                                                                    class="badge badge-pill badge-success mb-1">
+                                                                    Terima
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                        @endif
+                                                    @else
+                                                        <td>
+                                                            <div onclick="terima({{ $value->id }})"
+                                                                class="badge badge-pill badge-success mb-1">
+                                                                Terima
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    @endif
+                                                @else
+                                                    <td>
+                                                        <div onclick="terima({{ $value->id }})"
+                                                            class="badge badge-pill badge-success mb-1">
+                                                            Terima
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                @endif
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('pkh.destroy', $value->id) }}"
-                                                        method="POST">
+                                                        action="{{ route('pkh.destroy', $value->id) }}" method="POST">
                                                         <a href="{{ route('pkh.edit', $value->id) }}"
                                                             class="btn btn-sm btn-primary"><i
                                                                 class="fas fa-pencil-alt"></i></a>

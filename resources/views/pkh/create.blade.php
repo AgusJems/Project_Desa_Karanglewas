@@ -60,11 +60,11 @@
                                 <!-- Nek required kue ngadu di isi ora olih kosong -->
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" required>
+                                    <input type="text" id="nama" name="nama" class="form-control" required readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
-                                    <input type="text" id="alamat" name="alamat" class="form-control" required>
+                                    <input type="text" id="alamat" name="alamat" class="form-control" required readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="anak">Status Anak</label>
@@ -86,40 +86,44 @@
                                     <label for="pendapatan">Pendapatan /bulan</label>
                                     <select id="pendapatan" name="pendapatan" class="form-control" required>
                                         <option disabled selected>--Pilih Pendapatan--</option>
-                                        <option value="golongan1"> < 1 Juta </option>
-                                        <option value="golongan2"> < 3 Juta </option>
-                                        <option value="golongan3"> < 5 Juta </option>
-                                        <option value="golongan4"> > 5 Juta </option>
+                                        <option value="gol1">
+                                            < 1 Juta </option>
+                                        <option value="gol2">
+                                            < 3 Juta </option>
+                                        <option value="gol3">
+                                            < 5 Juta </option>
+                                        <option value="gol4"> > 5 Juta </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="penerimaan">Penerimaan PKH</label>
-                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
+                                    <label for="status">Penerimaan PKH</label>
+                                    <select id="status" name="status" class="form-control" required>
                                         <option disabled selected>--Pilih Penerimaan--</option>
-                                        <option value="sudah"> Akan Menerima </option>
+                                        <option value="akan"> Akan Menerima </option>
                                         <option value="belum"> Tidak Menerima </option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="penerimaan">Tahap Bantuan</label>
-                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
+                                {{-- <div id="frmTahap" class="form-group">
+                                    <label for="tahap">Tahap Bantuan</label>
+                                    <select id="tahap" name="tahap" class="form-control" required>
                                         <option disabled selected>--Pilih Tahap--</option>
-                                        <option value="tahap1"> Tahap 1 </option>
-                                        <option value="tahap2"> Tahap 2 </option>
-                                        <option value="tahap3"> Tahap 3 </option>
+                                        <option value="t1"> Tahap 1 </option>
+                                        <option value="t2"> Tahap 2 </option>
+                                        <option value="t3"> Tahap 3 </option>
+                                        <option value="t4"> Tahap 4 </option>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="penerimaan">Jenis Nominal Bantuan</label>
-                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
+                                </div> --}}
+                                <div id="frmJenis" class="form-group">
+                                    <label for="jenis">Jenis Nominal Bantuan</label>
+                                    <select id="jenis" name="jenis" class="form-control" required>
                                         <option disabled selected>--Pilih Jenis Nominal Bantuan--</option>
                                         <option value="ibuhamil"> IBU HAMIL </option>
-                                        <option value="batila"> BALITA / ANANK USIA DINI </option>
+                                        <option value="balita"> BALITA / ANAK USIA DINI </option>
                                         <option value="sd"> SISWA SD </option>
                                         <option value="smp"> SISWA SMP </option>
                                         <option value="sma"> SISWA SMA </option>
                                         <option value="lansia"> LANSIA </option>
-                                        <option value="penyandang"> PENYANDANG DISABILITAS </option>
+                                        <option value="disabilitas"> PENYANDANG DISABILITAS </option>
                                     </select>
                                 </div>
                                 <div class="text-center pt-1 pb-1">
@@ -150,6 +154,20 @@
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
 
     <script>
+        $(document).ready(function() {
+            $('#frmJenis').hide()
+            // $('#frmTahap').hide()
+            $('#status').on('change', function() {
+                if ($(this).val() == 'akan') {
+                    $('#frmJenis').show(100)
+                    // $('#frmTahap').show(100)
+                } else {
+                    $('#frmJenis').hide(100)
+                    // $('#frmTahap').hide(100)
+                }
+            })
+        });
+
         function getData(nik) {
             let user_id = nik.value;
             $.ajax({
