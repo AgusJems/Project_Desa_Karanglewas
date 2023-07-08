@@ -63,6 +63,10 @@
                 {{-- menu user --}}
                 @if (Auth::user()->role == 'user')
                     <li class="menu-header">Transaksi</li>
+                    <li class="{{ request()->is('produk') ? 'active' : '' }}">
+                        <a href="{{ route('produk.index') }}" class="nav-link"><i class="fa fa-shopping-bag"></i>
+                            <span>Produk</span></a>
+                    </li>
                     <li class=" {{ request()->is('umkm') ? 'active' : '' }}">
                         <a href="{{ route('umkm.index') }}" class="nav-link"><i class="fas fa-th-large"></i>
                             <span>UMKM</span></a>

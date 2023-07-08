@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\PendudukController;
@@ -59,6 +60,11 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'login_check:user']], fu
 // route profile
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'auth'], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
+});
+
+// route produk
+Route::group(['prefix' => 'produk', 'as' => 'produk.', 'middleware' => 'auth'], function () {
+    Route::get('/', [ProdukController::class, 'index'])->name('index');
 });
 
 // route struktur
