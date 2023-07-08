@@ -37,7 +37,7 @@
                                     </div>
                                 @endif
                                 <!-- Fungsi nggo nambah data penduduk -->
-                                <table class="table table-bordered" style="width:120rem">
+                                <table class="table table-bordered" style="width:140rem">
                                     <tbody>
                                         <tr>
                                             <th>No.</th>

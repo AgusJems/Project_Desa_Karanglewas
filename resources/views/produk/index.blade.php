@@ -32,7 +32,7 @@
                                 <p>Rp. 1000</p>
                                 <div class="article-cta">
                                     <a class="btn btn-primary"
-                                        href="">Beli
+                                        href="https://wa.me/6281390021933?text=I'm%20interested%20in%20your%20car%20for%20sale">Beli
                                         Sekarang</a>
                                 </div>
                             </div>
