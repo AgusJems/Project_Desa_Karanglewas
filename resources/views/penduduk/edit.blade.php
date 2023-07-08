@@ -96,13 +96,6 @@
                                         value="{{ $data->tglLahir }}" required>
                                 </div>
                                 @endif
-                                @if (Auth::user()->role == 'admin')
-                                <div class="form-group">
-                                    <label for="jenisKelamin">Jenis Kelamin</label>
-                                    <input type="text" id="jenisKelamin" name="jenisKelamin" class="form-control"
-                                        value="{{ $data->kelamin }}" required readonly>
-                                </div>
-                                @else
                                 <div class="form-group">
                                     <label for="jenisKelamin">Jenis Kelamin</label>
                                     <select id="jenisKelamin" name="jenisKelamin" class="form-control" required>
@@ -111,7 +104,6 @@
                                         <option value="perempuan">Perempuan</option>
                                     </select>
                                 </div>
-                                @endif
                                 <div class="form-group">
                                     <label for="kawin">Status Perkawinan</label>
                                     <select id="kawin" name="kawin" class="form-control" required>
