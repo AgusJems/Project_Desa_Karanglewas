@@ -19,18 +19,18 @@
             <h2 class="section-title">Dukung UMKM Desa Karanglewas</h2>
             <p class="section-lead">Example of some Bootstrap table components.</p>
 
-            @foreach ($produk as $p)
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            @foreach ($produk as $p)
+                <div class="col-3 col-sm-6 col-md-6 col-lg-3">
                     <article class="article">
                         <div class="article-header">
                             <div class="article-image" data-background="/images/{{ $p->gambar }}">
                             </div>
                         </div>
                         <div class="article-details">
-                            <p>{{$p->produk}}</p>
-                            <p>{{$p->lokasi}}</p>
-                            <p>Rp. {{$p->harga}}</p>
+                            <p class="text-center">{{$p->produk}}</p>
+                            <p class="text-center">{{$p->lokasi}}</p>
+                            <p class="text-center">Rp. {{$p->harga}}</p>
                             <div class="article-cta">
                                 <a class="btn btn-primary"
                                     href="https://wa.me/6281226889356?text=Saya%20ingin%20membeli%20{{$p->produk}}">Beli
@@ -39,8 +39,8 @@
                         </div>
                     </article>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </section>
 @endsection
