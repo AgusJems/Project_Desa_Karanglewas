@@ -100,7 +100,7 @@
                                     <select id="status" name="status" class="form-control" required>
                                         <option disabled selected>--Pilih Penerimaan--</option>
                                         <option value="akan"> Akan Menerima </option>
-                                        <option value="belum"> Tidak Menerima </option>
+                                        <option value="tidak"> Tidak Menerima </option>
                                     </select>
                                 </div>
                                 {{-- <div id="frmTahap" class="form-group">

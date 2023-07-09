@@ -79,13 +79,13 @@
                                                 @endif
 
                                                 <td>
-                                                    @if ($value->penerimaan == 'akan')
+                                                    @if ($value->status == 'akan')
                                                         {{-- <div class="badge badge-pill badge-success mb-1"> --}}
-                                                            Sudah Menerima
+                                                            Akan Menerima
                                                         {{-- </div> --}}
                                                     @else
                                                         {{-- <div class="badge badge-pill badge-danger mb-1"> --}}
-                                                            Belum Menerima
+                                                            Tidak Menerima
                                                         {{-- </div> --}}
                                                     @endif
                                                 </td>
@@ -103,7 +103,7 @@
                                                             @else
                                                                 <td>
                                                                     <div onclick="terima({{ $value->id }})"
-                                                                        class="badge badge-pill badge-success mb-1">
+                                                                        class="badge badge-pill badge-success mb-1" style="cursor:pointer">
                                                                         Terima
                                                                     </div>
                                                                 </td>
@@ -111,7 +111,7 @@
                                                         @else
                                                             <td>
                                                                 <div onclick="terima({{ $value->id }})"
-                                                                    class="badge badge-pill badge-success mb-1">
+                                                                    class="badge badge-pill badge-success mb-1" style="cursor:pointer">
                                                                     Terima
                                                                 </div>
                                                             </td>
@@ -120,7 +120,7 @@
                                                     @else
                                                         <td>
                                                             <div onclick="terima({{ $value->id }})"
-                                                                class="badge badge-pill badge-success mb-1">
+                                                                class="badge badge-pill badge-success mb-1" style="cursor:pointer">
                                                                 Terima
                                                             </div>
                                                         </td>
@@ -130,7 +130,7 @@
                                                 @else
                                                     <td>
                                                         <div onclick="terima({{ $value->id }})"
-                                                            class="badge badge-pill badge-success mb-1">
+                                                            class="badge badge-pill badge-success mb-1" style="cursor:pointer">
                                                             Terima
                                                         </div>
                                                     </td>

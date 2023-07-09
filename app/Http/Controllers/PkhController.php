@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use App\Models\Pkh;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PKHController extends Controller
@@ -71,23 +71,32 @@ class PKHController extends Controller
         return view('pkh.edit', compact('data'));
     }
 
-    // nyimpen data vaksin sing ws di ubah
+    // nyimpen data pkh sing ws di ubah
     public function update(Request $request, $id)
     {
         $data = Pkh::whereId($id)->update([
-            'telpon' => $request->telepon,
-            'penyakit' => $request->penyakit,
-            'vaksin' => $request->vaksin,
+            'anak' => $request->anak,
+            'kendaraan' => $request->kendaraan,
+            'pendapatan' => $request->pendapatan,
+            'status' => $request->status,
         ]);
-        return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Diubah');
+        return redirect()->route('pkh.index')->with('success', 'Data PKH Berhasil Diubah');
     }
 
     public function ChangeStatus($id)
     {
-        $confirm = Pkh::whereId($id)->update([
-            'penerimaan' => 'sudah'
-        ]);
+        $data = Pkh::findOrFail($id);
+        if (is_null($data->tahap1)) {
+            $data->tahap1 = Carbon::now()->format('d-F-Y');
+        }elseif (is_null($data->tahap2)) {
+            $data->tahap2 = Carbon::now()->format('d-F-Y');
+        }elseif (is_null($data->tahap3)) {
+            $data->tahap3 = Carbon::now()->format('d-F-Y');
+        }elseif (is_null($data->tahap4)) {
+            $data->tahap4 = Carbon::now()->format('d-F-Y');
+        }
+        $data->save();
 
-        return redirect()->route('pkh.index')->with('success', 'Status Penerimaan PKH Berhasil Diubah');
+        return redirect()->route('pkh.index')->with('success', 'Tahap Bantuan PKH Berhasil Diubah');
     }
 }

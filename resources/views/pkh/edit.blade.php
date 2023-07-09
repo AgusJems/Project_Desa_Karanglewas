@@ -60,9 +60,9 @@
                                         value="{{ $data->alamat }}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label for="anak">Kendaraan</label>
+                                    <label for="anak">Status Anak</label>
                                     <select id="anak" name="anak" class="form-control" required>
-                                        <option value="{{ $data->anak }}" selected disabled>{{ $data->anak }}</option>
+                                        <option selected disabled>--Pilih Status Anak-</option>
                                         <option value="Sekolah">Sekolah</option>
                                         <option value="Tidak Sekolah">Tidak Sekolah</option>
                                     </select>
@@ -70,28 +70,27 @@
                                 <div class="form-group">
                                     <label for="kendaraan">Kendaraan</label>
                                     <select id="kendaraan" name="kendaraan" class="form-control" required>
-                                        <option value="{{ $data->kendaraan }}" selected disabled>{{ $data->kendaraan }}</option>
+                                        <option selected disabled>--Pilih Status Kendaraan--</option>
                                         <option value="Punya">Punya</option>
                                         <option value="Tidak Punya">Tidak Punya</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pendapatan">Pendapatan /bulan</label>
+                                    <label for="pendapatan">Pendapatan / bulan</label>
                                     <select id="pendapatan" name="pendapatan" class="form-control" required>
-                                        <option value="{{ $data->pendapatan }}" selected disabled>{{ $data->pendapatan }}</option>
-                                        <option value="golongan1"> < 1 Juta </option>
-                                        <option value="golongan2"> < 3 Juta </option>
-                                        <option value="golongan3"> < 5 Juta </option>
-                                        <option value="golongan3"> > 5 Juta </option>
+                                        <option selected disabled>--Pilih Pendapatan--</option>
+                                        <option value="gol1"> < 1 Juta </option>
+                                        <option value="gol2"> < 3 Juta </option>
+                                        <option value="gol3"> < 5 Juta </option>
+                                        <option value="gol3"> > 5 Juta </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="penerimaan">Pendidikan</label>
-                                    <select id="penerimaan" name="penerimaan" class="form-control" required>
-                                        <option value="{{ $data->penerimaan }}" selected disabled>{{ $data->penerimaan }}
-                                        </option>
-                                        <option value="sudah"> Sudah Menerima </option>
-                                        <option value="belum"> Belum Menerima </option>
+                                    <label for="status">Penerima PKH</label>
+                                    <select id="status" name="status" class="form-control" required>
+                                        <option selected disabled>--Pilih Penerimaan--</option>
+                                        <option value="akan"> Akan Menerima </option>
+                                        <option value="tidak"> Belum Menerima </option>
                                     </select>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Simpan</button>
