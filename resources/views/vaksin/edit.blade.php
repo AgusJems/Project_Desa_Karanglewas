@@ -88,7 +88,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="vaksin">Status Vaksin</label>
+                                    <label for="vaksin">Dosis Vaksin</label>
                                     <select id="vaksin" name="vaksin" class="form-control" required>
                                         @if ($data->vaksin == 0)
                                             <option value="0" selected disabled>Belum Vaksin</option>
@@ -104,6 +104,11 @@
                                         <option value="2">Vaksin 2</option>
                                         <option value="3">Vaksin 3</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggalVaksin">Tanggal Lahir</label>
+                                    <input type="date" id="tanggalVaksin" name="tanggalVaksin" class="form-control"
+                                        value="" required>
                                 </div>
                                 <div class="text-center pt-1 pb-1">
                                     <button class="btn btn-primary" type="submit">Simpan</button>

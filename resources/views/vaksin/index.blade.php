@@ -41,7 +41,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @endif
-                                <table class="table table-bordered" style="width:120rem">
+                                <table class="table table-bordered" style="width:140rem">
                                     <tbody>
                                         <tr>
                                             <th>No.</th>
@@ -53,8 +53,8 @@
                                             <th>Jenis Kelamin</th>
                                             <th>No, Handphone</th>
                                             <th>Riwayat Penyakit</th>
-                                            <th>Status Vaksin</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Status Vaksin</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                         <!-- Fungsi nggo nambah data penduduk -->
                                         @forelse ($vaksin as $value)
@@ -69,17 +69,17 @@
                                                 <td>{{ $value->telpon }}</td>
                                                 <td>{{ $value->penyakit }}</td>
                                                 @if ($value->vaksin == 1)
-                                                    <td>
+                                                    <td class="text-center">
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
                                                             Vaksin 1
                                                         </div>
                                                     </td>
                                                 @elseif ($value->vaksin == 2)
-                                                    <td>
+                                                    <td class="text-center">
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
                                                             Vaksin 2
                                                         </div>
-                                                    </td>
+                                                    </td class="text-center">
                                                 @elseif ($value->vaksin == 3)
                                                     <td>
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
@@ -87,22 +87,25 @@
                                                         </div>
                                                     </td>
                                                 @else
-                                                    <td>
+                                                    <td class="text-center">
                                                         <div class="badge badge-pill badge-danger mb-1 float-center">
                                                             Belum Vaksin
                                                         </div>
                                                     </td>
                                                 @endif
-                                                <td>
+                                                <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('vaksin.destroy', $value->id) }}" method="POST">
                                                         <a href="{{ route('vaksin.edit', $value->id) }}"
-                                                            class="btn btn-sm btn-primary"><i
+                                                            class="btn btn-sm btn-primary mr-2"><i
                                                                 class="fas fa-pencil-alt"></i></a>
                                                         @csrf
                                                         @method('POST')
                                                         <button type="submit" class="btn btn-sm btn-danger"><i
                                                                 class="fas fa-trash"></i></button>
+                                                        <a href="{{ route('vaksin.detail') }}"
+                                                            class="btn btn-sm btn-success ml-2"><i
+                                                                class="fas fa-address-card"></i></a>
                                                     </form>
                                                 </td>
                                             </tr>

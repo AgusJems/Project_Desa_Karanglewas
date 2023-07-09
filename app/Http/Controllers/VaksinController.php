@@ -81,4 +81,9 @@ class VaksinController extends Controller
             return redirect()->route('vaksin.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
+
+    public function detail()
+    {
+        return view('vaksin.detail');
+    }
 }
