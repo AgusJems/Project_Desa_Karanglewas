@@ -40,8 +40,9 @@
                             <th>Tanggal Vaksin</th>
                         </tr>
                         {{-- nampilna data vaksin --}}
+                        @foreach ($vaksin as $v)
                         <tr>
-                            <td class="font-weight-600">Ewoks</td>
+                            <td class="font-weight-600">{{$v->nama}}</td>
                             <td>
                                 <div class="badge badge-danger">Belum</div>
                                 <div class="badge badge-success">Sudah</div>
@@ -49,6 +50,7 @@
                             <td>Picinta Ep Ep</td>
                             <td>Picinta Ep Ep</td>
                         </tr>
+                        @endforeach
                         {{-- nek data vaksin urung ana --}}
                         <tr class="text-danger">
                             Data Belum Tersedia

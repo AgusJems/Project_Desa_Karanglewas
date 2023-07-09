@@ -55,7 +55,7 @@ class VaksinController extends Controller
         if ($vaksin) {
             $data = new vaksinDetails();
             $data->vaksin_id = $vaksin->id;
-            $data->penyakit = $penyakit;
+            $data->penyakit = $vaksin->penyakit . ',' . $penyakit;
             $data->dosis = $request->vaksin;
             $data->tanggal = $request->tanggalVaksin;
             // dd($vaksin);
@@ -85,6 +85,9 @@ class VaksinController extends Controller
         $data = Vaksin::join('penduduks', 'vaksins.user_id', '=', 'penduduks.user_id')
             ->select('vaksins.*', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.tptLahir', 'penduduks.tglLahir', 'penduduks.kelamin')
             ->where('vaksins.id', $id)
+            ->with(['children' => function ($query) {
+                $query->latest();
+            }])
             ->first();
         return view('vaksin.edit', compact('data'));
     }
@@ -92,10 +95,11 @@ class VaksinController extends Controller
     // nyimpen data vaksin sing ws di ubah
     public function update(Request $request, $id)
     {
-        $data = Vaksin::whereId($id)->update([
-            'telpon' => $request->telepon,
-            'penyakit' => $request->penyakit,
-            'vaksin' => $request->vaksin,
+        $penyakit = implode(',', $request->penyakit);
+        $data = vaksinDetails::whereId($id)->update([
+            'penyakit' => $penyakit,
+            'dosis'    => $request->vaksin,
+            'tanggal'  => $request->tanggal,
         ]);
         return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Diubah');
     }
@@ -117,7 +121,12 @@ class VaksinController extends Controller
 
     public function detail()
     {
-        $vaksin = vaksinDetails::latest()->get();
+        $vaksin = vaksinDetails::join('vaksins', 'vaksin_details.vaksin_id', '=', 'vaksins.id')
+        ->join('penduduks', 'vaksins.user_id', '=', 'penduduks.user_id')
+        ->select('vaksin_details.*', 'penduduks.nama')
+        ->latest()
+        ->get();
+        // dd($vaksin);
         return view('vaksin.detail', compact('vaksin'));
     }
 }

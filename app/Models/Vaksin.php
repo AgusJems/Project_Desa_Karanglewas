@@ -13,4 +13,9 @@ class Vaksin extends Model
     {
         return $this->hasMany(vaksinDetails::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
