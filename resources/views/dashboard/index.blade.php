@@ -242,63 +242,21 @@
                         <h4>Data Produk UMKM</h4>
                     </div>
                     <div class="card-body p-0">
-                        <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @endif
-                            <table class="table table-bordered" style="width:100rem">
-                                <tbody>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>NIK</th>
-                                        <th>Nama Produk</th>
-                                        <!-- <th>Lokasi</th> -->
-                                        <!-- <th>Kategori</th> -->
-                                        <th>Gambar</th>
-                                        <!-- <th>Nama Produk</th> -->
-                                        <th>Harga</th>
-                                        <th>Kategori</th>
-                                        <th>Satuan Penjualan</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    @forelse ($umkms as $item)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $item->nik }}</td>
-                                            <td>{{ $item->produk }}</td>
-                                            <!-- <td>{{ $item->lokasi }}</td> -->
-                                            <!-- <td>{{ $item->kategori }}</td> -->
-                                            <td>
-                                                <img class="mb-3" src="/images/{{ $item->gambar }}" width="100px"
-                                                    alt="{{ $item->gambar }}">
-                                            </td>
-                                            <!-- <td>{{ $item->produk }}</td> -->
-                                            <td>{{ $item->harga }}</td>
-                                            <td>{{ $item->kategori }}</td>
-                                            <td>{{ $item->satuan }}</td>
-                                            <td>
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('umkm.destroy', $item->id) }}" method="POST">
-                                                    <a href="{{ route('umkm.edit', $item->id) }}"
-                                                        class="btn btn-sm btn-primary"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                    @csrf
-                                                    @method('POST')
-                                                    <button type="submit" class="btn btn-sm btn-danger"><i
-                                                            class="fas fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <div class="alert alert-danger">
-                                            Data UMKM belum Tersedia.
-                                        </div>
-                                    @endforelse
-                                <tbody>
-                            </table>
+                    @foreach ($produk as $p)
+                <div class="col-3 col-sm-6 col-md-6 col-lg-3">
+                    <article class="article">
+                        <div class="article-header">
+                            <div class="article-image" data-background="/images/{{ $p->gambar }}">
+                            </div>
                         </div>
+                        <div class="article-details">
+                            <p class="text-center">{{$p->produk}}</p>
+                            <p class="text-center">{{$p->lokasi}}</p>
+                            <p class="text-center">Rp. {{$p->harga}}</p>
+                        </div>
+                    </article>
+                </div>
+                @endforeach
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
