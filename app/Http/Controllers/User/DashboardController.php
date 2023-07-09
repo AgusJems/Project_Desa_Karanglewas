@@ -19,10 +19,10 @@ class DashboardController extends Controller
         // nggo ngitung jumlah penduduk wadon
         $perempuan = Penduduk::where('kelamin', 'perempuan')->count();
         // nggo ngitung jumlah penduduk sing ws vaksin
-        $vaksin = Penduduk::join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->where('vaksins.vaksin', '>', '0')->count();
+        $vaksin = Penduduk::join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->count();
 
         // nggo nampilna data diri user/penduduk sing login
-        $data = Penduduk::where('penduduks.user_id', Auth::user()->id)->join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->select('penduduks.*', 'vaksins.vaksin')->first();
+        $data = Penduduk::where('penduduks.user_id', Auth::user()->id)->join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->select('penduduks.*')->first();
         // nggo nampilna riwayat pembayaran pamsimas user/penduduk sing login
         $dataPamsimas = Penduduk::join('pams', 'penduduks.user_id', '=', 'pams.user_id')->select('pams.*', 'penduduks.nama')->where('pams.user_id', Auth::user()->id)->latest()->get();
         $umkms = Umkm::join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')->select('umkms.*', 'penduduks.nik', 'penduduks.nama')->latest()->paginate(10);

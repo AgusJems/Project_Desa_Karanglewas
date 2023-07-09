@@ -168,10 +168,6 @@
     </section>
 @endsection
 
-@push('plugins_js')
-    <script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-@endpush
-
 @push('page_js')
     <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
     <script>

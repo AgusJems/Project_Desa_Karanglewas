@@ -427,14 +427,6 @@
     </section>
 @endsection
 
-@push('plugins_js')
-    <script src="node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="node_modules/summernote/dist/summernote-bs4.js"></script>
-    {{-- <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script> --}}
-@endpush
-
 @push('page_js')
     <script src="{{ asset('assets/js/page/index.js') }}"></script>
 @endpush

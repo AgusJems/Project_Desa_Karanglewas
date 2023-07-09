@@ -26,29 +26,23 @@
         <div class="card">
             <div class="card-header">
                 <h4>Informasi Vaksin</h4>
-                <div class="card-header-action">
-                    <a href="" class="btn btn-primary">View More <i class="fas fa-chevron-right"></i></a>
-                </div>
             </div>
             <div class="card-body" style="height:375px;overflow-y:scroll">
                 <div class="list-unstyled list-unstyled-border">
                     <table class="table table-striped" style="width:80rem">
                         <tr>
                             <th>Nama</th>
-                            <th>Dosis Vaksin</th>
                             <th>Riwayat Penyakit</th>
+                            <th>Dosis Vaksin</th>
                             <th>Tanggal Vaksin</th>
                         </tr>
                         {{-- nampilna data vaksin --}}
-                        @foreach ($vaksin as $v)
+                        @foreach ($vaksin as $value)
                         <tr>
-                            <td class="font-weight-600">{{$v->nama}}</td>
-                            <td>
-                                <div class="badge badge-danger">Belum</div>
-                                <div class="badge badge-success">Sudah</div>
-                            </td>
-                            <td>Picinta Ep Ep</td>
-                            <td>Picinta Ep Ep</td>
+                            <td class="font-weight-600">{{$value->nama}}</td>
+                            <td>{{$value->penyakit}}</td>
+                            <td>{{$value->dosis}}</td>
+                            <td>{{$value->tanggal}}</td>
                         </tr>
                         @endforeach
                         {{-- nek data vaksin urung ana --}}
