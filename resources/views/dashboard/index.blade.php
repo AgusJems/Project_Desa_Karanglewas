@@ -137,21 +137,18 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Status Bantuan PKH</th>
-                                                    @if (isset($pkh->tahap1))
+                                                    @if (isset($pkh->tahap4))
+                                                        <td class="text-success">Sudah Menerima Bantuan Tahap 4
+                                                            di Tanggal {{ $pkh->tahap4 }}</td>
+                                                    @elseif(isset($pkh->tahap3))
+                                                        <td class="text-success">Sudah Menerima Bantuan Tahap 3 di
+                                                            Tanggal {{ $pkh->tahap3 }}</td>
+                                                    @elseif(isset($pkh->tahap2))
+                                                        <td class="text-success">Sudah Menerima Bantuan Tahap 2 di
+                                                            Tanggal {{ $pkh->tahap2 }}</td>
+                                                    @elseif(isset($pkh->tahap1))
                                                         <td class="text-success">Sudah Menerima Bantuan Tahap 1 di Tanggal
                                                             {{ $pkh->tahap1 }}</td>
-                                                        @if (isset($pkh->tahap2))
-                                                            <td class="text-success">Sudah Menerima Bantuan Tahap 2 di
-                                                                Tanggal {{ $pkh->tahap2 }}</td>
-                                                            @if (isset($pkh->tahap3))
-                                                                <td class="text-success">Sudah Menerima Bantuan Tahap 3 di
-                                                                    Tanggal {{ $pkh->tahap3 }}</td>
-                                                                @if (isset($pkh->tahap4))
-                                                                    <td class="text-success">Sudah Menerima Bantuan Tahap 4
-                                                                        di Tanggal {{ $pkh->tahap4 }}</td>
-                                                                @endif
-                                                            @endif
-                                                        @endif
                                                     @else
                                                         <td class="text-danger">Belum Menerima Bantuan PKH</td>
                                                     @endif
