@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vaksin extends Model
+class vaksinDetails extends Model
 {
     use HasFactory;
 
-    public function children()
+    public function parent()
     {
-        return $this->hasMany(vaksinDetails::class);
+        return $this->belongsTo(Vaksin::class);
     }
 }

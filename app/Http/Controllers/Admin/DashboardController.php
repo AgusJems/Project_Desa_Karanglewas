@@ -18,7 +18,7 @@ class DashboardController extends Controller
         // nggo ngitung jumlah penduduk wadon
         $perempuan = Penduduk::where('kelamin', 'perempuan')->count();
         // nggo ngitung jumlah penduduk sing ws vaksin
-        $vaksin = Penduduk::join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->where('vaksins.vaksin', '>', '0')->count();
+        $vaksin = Penduduk::join('vaksins', 'penduduks.user_id', '=', 'vaksins.user_id')->count();
 
         // nggo nampilna data vaksin kabeh penduduk sekang sing terbaru
         $dataVaksin = Penduduk::join('vaksins', 'vaksins.user_id', '=', 'penduduks.user_id')->select('vaksins.*', 'penduduks.nama')->latest()->get();

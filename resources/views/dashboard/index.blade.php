@@ -129,9 +129,9 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Status Vaksin</th>
-                                                    @if ($data->vaksin == 0)
+                                                    @if ($data->dosis == 0)
                                                         <td class="text-danger">Belum Vaksin</td>
-                                                    @elseif ($data->vaksin >= 1)
+                                                    @elseif ($data->dosis >= 1)
                                                         <td class="text-success">Sudah Vaksin</td>
                                                     @endif
                                                 </tr>
@@ -175,9 +175,9 @@
                                         <tr>
                                             <td class="font-weight-600">{{ $item->nama }}</td>
                                             <td>
-                                                @if ($item->vaksin == 0)
+                                                @if ($item->dosis == 0)
                                                     <div class="badge badge-danger">Belum</div>
-                                                @elseif ($item->vaksin >= 1)
+                                                @elseif ($item->dosis >= 1)
                                                     <div class="badge badge-success">Sudah</div>
                                                 @endif
                                             </td>

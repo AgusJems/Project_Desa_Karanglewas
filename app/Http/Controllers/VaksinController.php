@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use App\Models\Vaksin;
+use App\Models\vaksinDetails;
 use Illuminate\Http\Request;
 
 class VaksinController extends Controller
@@ -12,9 +13,27 @@ class VaksinController extends Controller
     public function index()
     {
         $vaksin = Vaksin::join('penduduks', 'vaksins.user_id', '=', 'penduduks.user_id')
-            ->select('vaksins.*', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.tptLahir', 'penduduks.tglLahir', 'penduduks.kelamin')
+            ->select(
+                'vaksins.*',
+                'penduduks.nik',
+                'penduduks.nama',
+                'penduduks.alamat',
+                'penduduks.tptLahir',
+                'penduduks.tglLahir',
+                'penduduks.kelamin'
+            )
+            ->with(['children' => function ($query) {
+                $query->latest();
+            }])
             ->latest()
             ->paginate(10);
+        // $vaksin = Vaksin::with(['children' => function ($query) {
+        //     $query->latest();
+        // }])->get();
+        // dd($vaksin->children->first());
+        // $data = vaksinDetails::where('vaksin_id', $vaksin->id)
+        // ->latest();
+
         return view('vaksin.index', compact('vaksin'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -29,18 +48,32 @@ class VaksinController extends Controller
     // nyimpen data vaksin sing ws di input
     public function store(Request $request)
     {
+        // dd($request->all());
+        $penyakit = implode(',', $request->penyakit);
         $vaksin = Vaksin::where('user_id', $request->nik)
-        ->first();
-        // dd($vaksin);
+            ->first();
         if ($vaksin) {
-            return redirect()->route('vaksin.index')->with('failed', 'Data Vaksin Sudah Tersedia');
-        }else {
+            $data = new vaksinDetails();
+            $data->vaksin_id = $vaksin->id;
+            $data->penyakit = $penyakit;
+            $data->dosis = $request->vaksin;
+            $data->tanggal = $request->tanggalVaksin;
+            // dd($vaksin);
+            $data->save();
+            // return redirect()->route('vaksin.index')->with('failed', 'Data Vaksin Sudah Tersedia');
+            return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Disimpan');
+        } else {
             $data = new Vaksin();
             $data->user_id = $request->nik;
             $data->telpon = $request->telepon;
-            $data->penyakit = $request->penyakit;
-            $data->vaksin = $request->vaksin;
             $data->save();
+            $vaksin = new vaksinDetails();
+            $vaksin->vaksin_id = $data->id;
+            $vaksin->penyakit = $penyakit;
+            $vaksin->dosis = $request->vaksin;
+            $vaksin->tanggal = $request->tanggalVaksin;
+            // dd($vaksin);
+            $vaksin->save();
 
             return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Disimpan');
         }
@@ -84,6 +117,7 @@ class VaksinController extends Controller
 
     public function detail()
     {
-        return view('vaksin.detail');
+        $vaksin = vaksinDetails::latest()->get();
+        return view('vaksin.detail', compact('vaksin'));
     }
 }

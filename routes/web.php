@@ -100,7 +100,7 @@ Route::group(['prefix' => 'pkh', 'as' => 'pkh.', 'middleware' => 'auth'], functi
 Route::group(['prefix' => 'vaksin', 'as' => 'vaksin.', 'middleware' => 'auth'], function () {
     Route::get('/', [VaksinController::class, 'index'])->name('index');
     Route::get('/create', [VaksinController::class, 'create'])->name('create');
-    Route::get('/detail', [VaksinController::class, 'detail'])->name('detail');
+    Route::get('/detail/{id}', [VaksinController::class, 'detail'])->name('detail');
     Route::post('/create', [VaksinController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [VaksinController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [VaksinController::class, 'update'])->name('update');

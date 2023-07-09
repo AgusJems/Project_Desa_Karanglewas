@@ -67,20 +67,20 @@
                                                 <td>{{ $value->tglLahir }}</td>
                                                 <td>{{ $value->kelamin }}</td>
                                                 <td>{{ $value->telpon }}</td>
-                                                <td>{{ $value->penyakit }}</td>
-                                                @if ($value->vaksin == 1)
+                                                <td>{{ $value->children->first()->penyakit }}</td>
+                                                @if ($value->children->first()->dosis == 1)
                                                     <td class="text-center">
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
                                                             Vaksin 1
                                                         </div>
                                                     </td>
-                                                @elseif ($value->vaksin == 2)
+                                                @elseif ($value->children->first()->dosis == 2)
                                                     <td class="text-center">
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
                                                             Vaksin 2
                                                         </div>
                                                     </td class="text-center">
-                                                @elseif ($value->vaksin == 3)
+                                                @elseif ($value->children->first()->dosis == 3)
                                                     <td>
                                                         <div class="badge badge-pill badge-success mb-1 float-center">
                                                             Vaksin 3
@@ -103,7 +103,7 @@
                                                         @method('POST')
                                                         <button type="submit" class="btn btn-sm btn-danger"><i
                                                                 class="fas fa-trash"></i></button>
-                                                        <a href="{{ route('vaksin.detail') }}"
+                                                        <a href="{{ route('vaksin.detail', $value->id) }}"
                                                             class="btn btn-sm btn-success ml-2"><i
                                                                 class="fas fa-address-card"></i></a>
                                                     </form>

@@ -55,14 +55,14 @@ class PendudukController extends Controller
             $data->akta = $request->akta;
             $data->pam = $request->pam;
             // $data->re = $request->pam;
-            // $data->save();
+            $data->save();
 
             // jika data penduduk disimpan otomatis generate data vaksin nggo penduduk
-            if ($data->save()) {
-                $vaksin = new Vaksin();
-                $vaksin->user_id = $user->id;
-                $vaksin->save();
-            }
+            // if ($data->save()) {
+            //     $vaksin = new Vaksin();
+            //     $vaksin->user_id = $user->id;
+            //     $vaksin->save();
+            // }
         }
 
         return redirect()->route('penduduk.index')->with('success', 'Data Penduduk Berhasil Disimpan');

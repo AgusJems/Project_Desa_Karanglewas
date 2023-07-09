@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="penyakit">Riwayat Penyakit</label>
-                                    <select class="js-example-basic-single" multiple name="Penyakit[]">
+                                    <select class="js-example-basic-single" multiple name="penyakit[]" id="penyakit">
                                         <option value="Demam">Demam</option>
                                         <option value="Jantung">Jantung</option>
                                         <option value="Lupus">Lupus</option>

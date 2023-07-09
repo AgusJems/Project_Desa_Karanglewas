@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVaksinsTable extends Migration
+class CreateVaksinDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateVaksinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vaksins', function (Blueprint $table) {
+        Schema::create('vaksin_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('telpon')->nullable();
+            $table->string('vaksin_id');
+            $table->string('penyakit');
+            $table->string('dosis');
+            $table->string('tanggal');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateVaksinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vaksins');
+        Schema::dropIfExists('vaksin_details');
     }
 }

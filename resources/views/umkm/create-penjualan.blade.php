@@ -60,7 +60,7 @@
                                 </div> --}}
                                 <div class="form-group">
                                     <label for="qty">Qty</label>
-                                    <input type="number" id="qty" name="qty" class="form-control" oninput="calcTotal(event)" required>
+                                    <input type="number" id="qty" name="qty" min="1" class="form-control" oninput="calcTotal(event)" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="harga">Harga</label>
