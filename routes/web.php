@@ -65,6 +65,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'auth']
 // route produk
 Route::group(['prefix' => 'produk', 'as' => 'produk.', 'middleware' => 'auth'], function () {
     Route::get('/', [ProdukController::class, 'index'])->name('index');
+    Route::get('/transaction/{id}', [ProdukController::class, 'buy'])->name('transaction');
 });
 
 // route struktur

@@ -49,7 +49,7 @@
                                         onchange="getData(this)">
                                         <option disabled selected>--Pilih Produk--</option>
                                         @foreach ($produk as $item)
-                                            <option value="{{ $item->id }}">{{ $item->produk }}
+                                            <option value="{{ $item->id }}">{{ $item->produk }} - {{$item->nama}}
                                             </option>
                                         @endforeach
                                     </select>

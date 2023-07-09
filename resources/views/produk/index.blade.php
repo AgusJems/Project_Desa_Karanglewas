@@ -7,7 +7,7 @@
 @section('appName', 'Website Desa')
 {{-- send tampilan produk --}}
 @section('content')
-<section class="section">
+    <section class="section">
         <div class="section-header">
             <h1>Produk UMKM Desa Karanglewas</h1>
             <div class="section-header-breadcrumb">
@@ -19,26 +19,28 @@
             <h2 class="section-title">Dukung UMKM Desa Karanglewas</h2>
             <p class="section-lead">Example of some Bootstrap table components.</p>
 
+            @foreach ($produk as $p)
             <div class="row">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image" data-background="/images">
-                                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <article class="article">
+                        <div class="article-header">
+                            <div class="article-image" data-background="/images/{{ $p->gambar }}">
                             </div>
-                            <div class="article-details">
-                                <p>Mendoan</p>
-                                <p>RT 12/ RW 12</p>
-                                <p>Rp. 1000</p>
-                                <div class="article-cta">
-                                    <a class="btn btn-primary"
-                                        href="https://wa.me/6281390021933?text=I'm%20interested%20in%20your%20car%20for%20sale">Beli
-                                        Sekarang</a>
-                                </div>
+                        </div>
+                        <div class="article-details">
+                            <p>{{$p->produk}}</p>
+                            <p>{{$p->lokasi}}</p>
+                            <p>Rp. {{$p->harga}}</p>
+                            <div class="article-cta">
+                                <a class="btn btn-primary"
+                                    href="https://wa.me/6281226889356?text=Saya%20ingin%20membeli%20{{$p->produk}}">Beli
+                                    Sekarang</a>
                             </div>
-                        </article>
-                    </div>
+                        </div>
+                    </article>
+                </div>
             </div>
+            @endforeach
         </div>
     </section>
 @endsection

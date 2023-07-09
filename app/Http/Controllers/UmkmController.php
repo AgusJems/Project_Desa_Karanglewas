@@ -36,7 +36,10 @@ class UmkmController extends Controller
 
     public function create2()
     {
-        $produk = Umkm::where('user_id', Auth::user()->id)->get();
+        $produk = Umkm::join('penduduks', 'umkms.user_id', '=', 'penduduks.user_id')
+            ->select('umkms.*', 'penduduks.nama')
+            ->latest()
+            ->get();
         return view('umkm.create-penjualan', compact('produk'));
     }
 
@@ -144,5 +147,9 @@ class UmkmController extends Controller
         $data->save();
 
         return redirect()->route('umkm.index')->with(['success' => 'Data penjuan berhasil dimasukkan.']);
+    }
+
+    public function beli($id){
+        dd($id);
     }
 }
