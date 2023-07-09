@@ -137,8 +137,24 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Status Bantuan PKH</th>
+                                                    @if (isset($pkh->tahap1))
+                                                        <td class="text-success">Sudah Menerima Bantuan Tahap 1 di Tanggal
+                                                            {{ $pkh->tahap1 }}</td>
+                                                        @if (isset($pkh->tahap2))
+                                                            <td class="text-success">Sudah Menerima Bantuan Tahap 2 di
+                                                                Tanggal {{ $pkh->tahap2 }}</td>
+                                                            @if (isset($pkh->tahap3))
+                                                                <td class="text-success">Sudah Menerima Bantuan Tahap 3 di
+                                                                    Tanggal {{ $pkh->tahap3 }}</td>
+                                                                @if (isset($pkh->tahap4))
+                                                                    <td class="text-success">Sudah Menerima Bantuan Tahap 4
+                                                                        di Tanggal {{ $pkh->tahap4 }}</td>
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @else
                                                         <td class="text-danger">Belum Menerima Bantuan PKH</td>
-                                                        <td class="text-success">Sudah Menerima di Tanggal</td>
+                                                    @endif
                                                 </tr>
                                             </table>
                                         </div>
@@ -242,21 +258,21 @@
                         <h4>Data Produk UMKM</h4>
                     </div>
                     <div class="card-body p-0">
-                    @foreach ($produk as $p)
-                <div class="col-3 col-sm-6 col-md-6 col-lg-3">
-                    <article class="article">
-                        <div class="article-header">
-                            <div class="article-image" data-background="/images/{{ $p->gambar }}">
+                        @foreach ($produk as $p)
+                            <div class="col-3 col-sm-6 col-md-6 col-lg-3">
+                                <article class="article">
+                                    <div class="article-header">
+                                        <div class="article-image" data-background="/images/{{ $p->gambar }}">
+                                        </div>
+                                    </div>
+                                    <div class="article-details">
+                                        <p class="text-center">{{ $p->produk }}</p>
+                                        <p class="text-center">{{ $p->lokasi }}</p>
+                                        <p class="text-center">Rp. {{ $p->harga }}</p>
+                                    </div>
+                                </article>
                             </div>
-                        </div>
-                        <div class="article-details">
-                            <p class="text-center">{{$p->produk}}</p>
-                            <p class="text-center">{{$p->lokasi}}</p>
-                            <p class="text-center">Rp. {{$p->harga}}</p>
-                        </div>
-                    </article>
-                </div>
-                @endforeach
+                        @endforeach
                     </div>
                     <div class="card-footer text-right">
                         <nav class="d-inline-block">
