@@ -56,11 +56,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="jenisKelamin">Warga Desa/ Warga Luar Desa</label>
-                            <select id="jenisKelamin" name="jenisKelamin" class="form-control" required>
+                            <label for="status">Warga Desa/ Warga Luar Desa</label>
+                            <select id="status" name="status" class="form-control" required>
                                 <option disabled selected>--Pilih Warga--</option>
                                 <option value="warga_desa">Warga Desa</option>
-                                <option value="luar-desa">Warga Luar Desa</option>
+                                <option value="luar_desa">Warga Luar Desa</option>
                             </select>
                         </div>
 

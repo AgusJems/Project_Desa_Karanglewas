@@ -46,6 +46,9 @@ class UmkmController extends Controller
     // input data umkm
     public function store(Request $request)
     {
+        $request->validate([
+            'telpon' => 'required',
+        ]);
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -91,7 +94,7 @@ class UmkmController extends Controller
         $data = Umkm::whereId($id)->update([
             'lokasi' => $request->lokasi,
             'produk' => $request->produk,
-            'telpon' => $request->telpon,
+            // 'telpon' => $request->telpon,
             'harga' => $request->harga,
             'satuan' => $request->satuan,
             'gambar' => $request->image,
@@ -146,7 +149,7 @@ class UmkmController extends Controller
         $data->total = $request->total;
         $data->save();
 
-        return redirect()->route('umkm.index')->with(['success' => 'Data penjuan berhasil dimasukkan.']);
+        return redirect()->route('umkm.index')->with(['success' => 'Data penjualan berhasil dimasukkan.']);
     }
 
     public function beli($id){

@@ -2,12 +2,6 @@
 
 {{-- push plugin_css page ming tampilan layout master --}}
 @push('plugins_css')
-    <link rel="stylesheet" href="node_modules/bootstrap-daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="node_modules/selectric/public/selectric.css">
-    <link rel="stylesheet" href="node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
@@ -29,7 +23,7 @@
                 <p class="section-lead">Silahkan isi form pembayaran pamsimas sesuai dengan penggunaan anda.</p>
 
                 <div class="row">
-                    <div class="col-xl-12 col-md-6 col-lg-6">
+                    <div class="col-xl-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <form action="{{ route('pamsimas.store') }}" method="post">
@@ -37,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="nik">NIK</label>
                                         {{-- <input type="text" id="nik" name="nik" class="form-control"> --}}
-                                        <select id="nik" name="nik" class="form-control" required
+                                        <select id="nik" name="nik" class="form-control js-example-basic-single" required
                                             onchange="getData(this)">
                                             <option disabled selected>--Pilih NIK--</option>
                                             @foreach ($penduduk as $item)
@@ -48,8 +42,29 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="bulan">Bulan</label>
+                                        <select class="js-example-basic-single" multiple name="bulan[]" id="bulan">
+                                            <option value="januari">Januari</option>
+                                            <option value="februari">Februari</option>
+                                            <option value="maret">Maret</option>
+                                            <option value="april">April</option>
+                                            <option value="mei">Mei</option>
+                                            <option value="juni">Juni</option>
+                                            <option value="juli">Juli</option>
+                                            <option value="agustus">Agustus</option>
+                                            <option value="september">September</option>
+                                            <option value="oktober">Oktober</option>
+                                            <option value="november">November</option>
+                                            <option value="desember">Desember</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="harga">Harga/M<sup>3</sup></label>
+                                        <input type="text" id="harga" name="harga" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="nik">Input Pemakaian M<sup>3</sup></label>
-                                        <input type="number" id="pemakaian" name="pemakaian" oninput="calcTotal(event)"
+                                        <input type="number" id="pemakaian" name="pemakaian"
                                             value="0" class="form-control" required>
                                     </div>
                                     <div class="form-group">
@@ -57,48 +72,12 @@
                                         <input type="text" id="nama" name="nama" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="bulan">Bulan</label>
-                                        <input type="text" id="bulan" name="bulan" class="form-control" value="{{ Carbon\Carbon::now()->format('F') }}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="penyakit">Bulan</label>
-                                    <select class="js-example-basic-single" multiple name="penyakit[]" id="penyakit">
-                                        <option value="januari">Januari</option>
-                                        <option value="februari">Februari</option>
-                                        <option value="maret">Maret</option>
-                                        <option value="april">April</option>
-                                        <option value="mei">Mei</option>
-                                        <option value="juni">Juni</option>
-                                        <option value="juli">Juli</option>
-                                        <option value="agustus">Agustus</option>
-                                        <option value="september">September</option>
-                                        <option value="oktober">Oktober</option>
-                                        <option value="november">November</option>
-                                        <option value="desember">Desember</option>
-                                    </select>
-                                </div>
-                                    {{-- <div class="form-group">
-                                        <label for="tanggal">Tanggal</label>
-                                        <input type="text" id="tanggal" name="tanggal" class="form-control" readonly
-                                            required>
-                                    </div> --}}
-                                    <div class="form-group">
                                         <label for="alamat">Alamat</label>
                                         <input type="text" id="alamat" name="alamat" class="form-control" readonly>
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <label for="statuspembayaran">Status Pembayaran</label>
-                                        <input type="text" style="color: red" id="statuspembayaran"
-                                            name="statuspembayaran" class="form-control" readonly>
-                                    </div> --}}
                                     <div class="form-group">
-                                        <label for="harga">Harga</label>
-                                        <input type="text" id="harga" name="harga" class="form-control"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="harga">Total Bayar</label>
-                                        <input type="text" id="harga" name="harga" class="form-control" readonly
+                                        <label for="total">Total Bayar</label>
+                                        <input type="text" id="total" name="total" class="form-control" readonly
                                             required>
                                     </div>
                                     <div class="text-center">
@@ -116,7 +95,7 @@
 
 @push('page_js')
     <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         function getData(nik) {
@@ -129,7 +108,7 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(result) {
-                    console.log(result);
+                    // console.log(result);
                     $('#nama').val(result['nama']);
                     $('#alamat').val(result['alamat']);
                 }
@@ -137,10 +116,21 @@
         }
 
         // nggo ngitung total harga
+        $('#pemakaian').on('keyup', function(event){
+            const se = document.getElementById('bulan');
+            const so = se.selectedOptions;
+            const noso = so.length;
+            const harga = $('#harga').val();
+            const pmk = $(this).val();
+
+            // let tagihan =
+            const total = parseInt(pmk) * parseInt(harga) * parseInt(noso);
+            console.log('tagihan ', noso, harga, pmk, total)
+            $('#total').val(total);
+        })
         function calcTotal(bct) {
-            let pmk = bct.target.value;
-            let total = parseInt(pmk) * 500;
-            $('#harga').val(total);
+            bct.event
+
         }
 
         // nggo rubah status pembayaran
@@ -160,10 +150,10 @@
     </script>
 
     <script>
-    $(document).ready(function(){
-        $('.js-example-basic-single').select2({
-            theme: "classic"
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2({
+                theme: "classic"
+            });
         });
-    });
     </script>
 @endpush

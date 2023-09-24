@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function index()
     {
         // ngoo ngitung total jumlah penduduk
-        $penduduk = Penduduk::count();
+        $penduduk = Penduduk::where('isPenduduk', true)->count();
         // nggo ngitung jumlah penduduk lanang
         $laki = Penduduk::where('kelamin', 'laki-laki')->count();
         // nggo ngitung jumlah penduduk wadon

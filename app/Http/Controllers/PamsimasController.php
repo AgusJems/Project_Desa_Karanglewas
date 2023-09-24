@@ -34,12 +34,16 @@ class PamsimasController extends Controller
     // simpan data pembayaran sing dilakukan user/penduduk
     public function store(Request $request)
     {
-        // dd($request->all());
+        if (count($request->bulan) > 1) {
+            $request->bulan = implode(', ', $request->bulan);
+        }else{
+            $request->bulan = $request->bulan[0];
+        }
+        // dd($request->bulan);
         $pam = new Pam();
         $pam->user_id = $request->nik;
         $pam->bulan = $request->bulan;
-        // $pam->tanggal = $request->tanggal;
-        $pam->harga = $request->harga;
+        $pam->harga = $request->total;
         $pam->status = 'belum';
         // nek data disimpan direct wa ke nomor admin
         if ($pam->save()) {

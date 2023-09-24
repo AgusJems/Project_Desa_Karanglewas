@@ -18,7 +18,7 @@
         <p class="section-lead">Example of some Bootstrap table components.</p>
 
         <div class="row">
-            <div class="col-xl-12 col-md-6 col-lg-6">
+            <div class="col-xl-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Overview</h4>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
+                        <div class="col-xl-12 col-md-12 col-lg-12" style="overflow-x: auto">
                             {{-- nampilna pesan sukses --}}
                             @if ($message = Session::get('success'))
                             <div class="alert alert-success">
@@ -39,6 +39,7 @@
                                 <tbody>
                                     <tr>
                                         <th>No.</th>
+                                        <th>Nama</th>
                                         <th>Bulan</th>
                                         <th>Tanggal</th>
                                         <th>Harga</th>
@@ -50,6 +51,7 @@
                                     @forelse ($pamsimas as $item)
                                     <tr>
                                         <td>{{ ++$i }}</td>
+                                        <td>{{ $item->nama }}</td>
                                         <td>{{ $item->bulan }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->harga }}</td>

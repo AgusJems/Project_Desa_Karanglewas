@@ -27,12 +27,6 @@ class VaksinController extends Controller
             }])
             ->latest()
             ->paginate(10);
-        // $vaksin = Vaksin::with(['children' => function ($query) {
-        //     $query->latest();
-        // }])->get();
-        // dd($vaksin->children->first());
-        // $data = vaksinDetails::where('vaksin_id', $vaksin->id)
-        // ->latest();
 
         return view('vaksin.index', compact('vaksin'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -60,7 +54,6 @@ class VaksinController extends Controller
             $data->tanggal = $request->tanggalVaksin;
             // dd($vaksin);
             $data->save();
-            // return redirect()->route('vaksin.index')->with('failed', 'Data Vaksin Sudah Tersedia');
             return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Disimpan');
         } else {
             $data = new Vaksin();

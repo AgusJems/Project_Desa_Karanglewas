@@ -14,8 +14,9 @@ class PendudukController extends Controller
     public function index()
     {
         // ngambil seluruh data sekang database
-        $penduduk = Penduduk::latest()->paginate(10);
-        return view('penduduk.index', compact('penduduk'))->with('i', (request()->input('page', 1) - 1) * 10);
+        $penduduk = Penduduk::where('isPenduduk', true)->latest()->paginate(10);
+        $pendudukluar = Penduduk::where('isPenduduk', false)->latest()->paginate(10);
+        return view('penduduk.index', compact('penduduk', 'pendudukluar'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // nampilna tampilan form input penduduk

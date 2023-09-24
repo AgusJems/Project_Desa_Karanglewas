@@ -44,12 +44,14 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = 'user';
 
+
         if($user->save())
         {
             $data = new Penduduk();
             $data->nik = $request->nik;
             $data->nama = $request->nama;
             $data->user_id = $user->id;
+            $data->isPenduduk = $request->status === 'warga_desa' ? true : false;
 
             if ($data->save()) {
                 $vaksin = new Vaksin();
