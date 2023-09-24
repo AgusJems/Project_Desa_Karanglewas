@@ -32,7 +32,7 @@
                 <div class="col-xl-12 col-md-6 col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('vaksin.update', $data->children->first()->id) }}" method="POST">
+                            <form action="{{ route('vaksin.update', $data->children->first()->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
@@ -104,7 +104,7 @@
                                         @else
                                             <option value="3" selected disabled>Vaksin 3</option>
                                         @endif
-                                        <option value="0">Belum Vaksin</option>
+                                        {{-- <option value="0">Belum Vaksin</option> --}}
                                         <option value="1">Vaksin 1</option>
                                         <option value="2">Vaksin 2</option>
                                         <option value="3">Vaksin 3</option>

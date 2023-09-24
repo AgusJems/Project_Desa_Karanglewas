@@ -11,7 +11,6 @@ use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\PamsimasController;
 use App\Http\Controllers\PKHController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
-use App\Models\Penduduk;
 use Illuminate\Support\Facades\Route;
 
 /*

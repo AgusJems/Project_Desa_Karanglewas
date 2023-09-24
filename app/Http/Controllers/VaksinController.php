@@ -95,11 +95,12 @@ class VaksinController extends Controller
     // nyimpen data vaksin sing ws di ubah
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $penyakit = implode(',', $request->penyakit);
         $data = vaksinDetails::whereId($id)->update([
             'penyakit' => $penyakit,
             'dosis'    => $request->vaksin,
-            'tanggal'  => $request->tanggal,
+            'tanggal'  => $request->tanggalVaksin,
         ]);
         return redirect()->route('vaksin.index')->with('success', 'Data Vaksin Berhasil Diubah');
     }
