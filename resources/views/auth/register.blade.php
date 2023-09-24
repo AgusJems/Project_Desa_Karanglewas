@@ -56,6 +56,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="jenisKelamin">Warga Desa/ Warga Luar Desa</label>
+                            <select id="jenisKelamin" name="jenisKelamin" class="form-control" required>
+                                <option disabled selected>--Pilih Warga--</option>
+                                <option value="warga_desa">Warga Desa</option>
+                                <option value="luar-desa">Warga Luar Desa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="email">E-mail</label>
                             <input id="email" type="text" class="form-control" name="email" tabindex="1"
                                 required autofocus>

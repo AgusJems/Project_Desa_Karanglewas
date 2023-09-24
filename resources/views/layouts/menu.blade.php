@@ -16,6 +16,7 @@
                     </li>
                 @endif
                 {{-- menu global --}}
+                @if (Auth::user()->role == 'admin')
                 <li class="{{ request()->is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}" class="nav-link"><i
                             class="fas fa-book-reader"></i><span>Profil Desa</span></a>
@@ -24,7 +25,7 @@
                     <a href="{{ route('struktur.index') }}" class="nav-link"><i
                             class="fas fa-sitemap"></i><span>Struktur Organisasi</span></a>
                 </li>
-
+                @endif
                 </li>
                 {{-- menu admin --}}
                 @if (Auth::user()->role == 'admin')
