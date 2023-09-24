@@ -28,7 +28,7 @@ class CreatePenduduksTable extends Migration
             $table->string('akta')->unique()->nullable();
             $table->string('pam')->nullable();
             $table->string('regis')->nullable();
-            $table->boolean('isPenduduk')->default(false);
+            $table->boolean('isPenduduk')->default(true);
             $table->timestamps();
         });
     }
