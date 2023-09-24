@@ -83,7 +83,6 @@
                                                         </div>
                                                     @endif
                                                 </td>
-                                                <td>{{ $value->reg }}</td>
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('penduduk.destroy', $value->id) }}"
@@ -121,7 +120,7 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Tabel Data Penduduk Desa Karanglewas</h2>
+            <h2 class="section-title">Tabel Data Penduduk Luar Desa Karanglewas</h2>
             <p class="section-lead">Example of some Bootstrap table components.</p>
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-lg-12">
@@ -181,7 +180,6 @@
                                                         </div>
                                                     @endif
                                                 </td>
-                                                <td>{{ $value->reg }}</td>
                                                 <td>
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('penduduk.destroy', $value->id) }}"

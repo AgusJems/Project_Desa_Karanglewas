@@ -67,7 +67,7 @@
                                                 <td>{{ $value->tglLahir }}</td>
                                                 <td>{{ $value->kelamin }}</td>
                                                 <td>{{ $value->telpon }}</td>
-                                                <td>{{ $value->children->first()->penyakit }}</td>
+                                                <td>{{ $value->children->first()->penyakit ? $value->children->first()->penyakit : '' }}</td>
                                                 @if ($value->children->first()->dosis == 1)
                                                     <td class="text-center">
                                                         <div class="badge badge-pill badge-success mb-1 float-center">

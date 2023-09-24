@@ -201,7 +201,6 @@
                                     <h1 class="text-center text-danger">Dalam Proses Verifikasi oleh Admin</h1>
                                     <div class="text-center pt-1 pb-1">
                                         {{-- {{ route('umkm.cs', Auth::user()->penduduk->id) }} --}}
-                                        <a href="" class="btn btn-primary">Hubungi Admin</a>
                                     </div>
                                 </div>
                             </div>

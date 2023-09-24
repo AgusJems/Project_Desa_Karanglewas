@@ -54,12 +54,7 @@ class AuthController extends Controller
             $data->isPenduduk = $request->status === 'warga_desa' ? true : false;
 
             if ($data->save()) {
-                $vaksin = new Vaksin();
-                $vaksin->user_id = $user->id;
-
-                if ($vaksin->save()) {
                     return redirect()->route('login.index')->withInput()->withErrors(['register_success' => 'Registrasi Berhasil, silahkan login.']);
-                }
             }
         }
         else
