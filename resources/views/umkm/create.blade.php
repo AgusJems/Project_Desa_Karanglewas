@@ -74,7 +74,8 @@
                                         <option value="Setengah Jadi">Setengah Jadi</option>
                                         <option value="Mentah">Mentah</option>
                                     </select>
-                                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
                                         <label for="image">Upload Gambar</label>
                                         <input type="file" id="image" name="image" class="form-control" required
                                             accept=".png, .jpg, .jpeg">
@@ -84,7 +85,6 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
                                 <div class="form-group">
                                     <label for="telpon">Nomor telepon / WA</label>
                                     <input type="text" id="telpon" name="telpon" class="form-control" required>
@@ -102,6 +102,8 @@
                                         <option value="Meter">Meter</option>
                                         <option value="Bungkus">Bungkus</option>
                                         <option value="Lembar">Lembar</option>
+                                        <option value="Karung">Karung</option>
+                                        <option value="Potong">Potong</option>
                                     </select>
                                 </div>
                                 <div class="text-center pt-1 pb-1">

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+<link rel="stylesheet" href="../node_modules/prismjs/themes/prism.css">
+
 @section('title', 'pamsimas')
 @section('appName', 'Website Desa')
 @section('content')
@@ -57,7 +59,7 @@
                                         <td>{{ $item->harga }}</td>
                                         <td>
                                             <img class="mb-3" src="{{ asset('/images/'.$item->gambar) }}"
-                                            width="100px" alt="{{ $item->gambar }}">
+                                            width="100px" alt="{{ $item->gambar }}" id="modal-2">
                                         </td>
                                         <td class="text-center">
                                             @if ($item->status == 'sudah')
@@ -71,8 +73,11 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <div onclick="bayar({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-primary mb-1">
-                                                ACC Pembayaran
+                                            <div onclick="bayar({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-success mb-1 mr-1">
+                                                ACC
+                                            </div>
+                                            <div style="cursor:pointer" class="badge badge-pill badge-danger mb-1 ml-1">
+                                                Tolak
                                             </div>
                                         </td>
                                     </tr>
@@ -103,6 +108,48 @@
                             </li>
                         </ul>
                     </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <h2 class="section-title">Rekap Pamsimas Desa Karanglewas</h2>
+        <p class="section-lead">Example of some Bootstrap table components.</p>
+
+            <div class="row">
+                <div class="col-xl-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Data Rekap Pamsimas</h4>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
+                                <table class="table table-bordered" style="width:100rem">
+                                    <tbody>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Nama</th>
+                                            <th>Bulan</th>
+                                            <th>Tanggal</th>
+                                            <th>Harga</th>
+                                            <th>Bukti Pembayaran</th>
+                                            </tr>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <nav class="d-inline-block">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,6 +254,8 @@
 
 @push('page_js')
 <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
+<script src="../node_modules/prismjs/prism.js"></script>
+<script src="../assets/js/page/bootstrap-modal.js"></script>
 <script>
     // nggo ngitung total harga
     function calcTotal(bct) {

@@ -109,70 +109,82 @@
                         </div>
                     </div>
                     <div class="section-body">
-                        <h2 class="section-title">Penjualan UMKM Desa Karanglewas</h2>
-                        <p class="section-lead">Example of some Bootstrap table components.</p>
+                <h2 class="section-title">Penjualan UMKM Desa Karanglewas</h2>
+                <p class="section-lead">Example of some Bootstrap table components.</p>
 
-                        <div class="row">
-                            <div class="col-xl-12 col-md-6 col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Data Penjualan</h4>
+                <div class="row">
+                    <div class="col-xl-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Data Penjualan</h4>
+                                {{-- tambah penjualan nggo user --}}
+                                @if (Auth()->user()->role == 'user')
+                                    <div class="card-header-action">
+                                        <a href="{{ route('umkm.create2') }}"
+                                            class="btn btn-icon icon-left btn-primary"><i
+                                                class="fas fa-plus"></i>&nbsp;Tambah Penjualan</a>
                                     </div>
-                                    <div class="card-body p-0">
-                                        <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
-                                            <table class="table table-bordered" style="width:100rem">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>NIK</th>
-                                                        <th>Nama Produsen</th>
-                                                        <th>Qty</th>
-                                                        <th>Harga</th>
-                                                        <th>Total Penjualan</th>
-                                                    </tr>
-                                                    @forelse ($penjualan as $item)
-                                                        <tr>
-                                                            <td>{{ ++$i }}</td>
-                                                            <td>{{ $item->nik }}</td>
-                                                            <td>{{ $item->nama }}</td>
-                                                            <td>{{ $item->jumlah }}</td>
-                                                            <td>{{ $item->harga }}</td>
-                                                            <td>{{ $item->total }}</td>
-                                                        </tr>
-                                                    @empty
-                                                        <div class="alert alert-danger">
-                                                            Data Penjualan belum Tersedia.
-                                                        </div>
-                                                    @endforelse
-                                                <tbody>
-                                            </table>
+                                @endif
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
+                                    @if ($message = Session::get('success'))
+                                        <div class="alert alert-success">
+                                            <p>{{ $message }}</p>
                                         </div>
-                                    </div>
-                                    <div class="card-footer text-right">
-                                        <nav class="d-inline-block">
-                                            <ul class="pagination mb-0">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1"><i
-                                                            class="fas fa-chevron-left"></i></a>
-                                                </li>
-                                                <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                            class="sr-only">(current)</span></a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#"><i
-                                                            class="fas fa-chevron-right"></i></a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                    @endif
+                                    <table class="table table-bordered" style="width:100rem">
+                                        <tbody>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>NIK</th>
+                                                <th>Nama Produsen</th>
+                                                <th>Qty</th>
+                                                <th>Harga</th>
+                                                <th>Total Penjualan</th>
+                                                {{-- <th>Action</th> --}}
+                                            </tr>
+                                            @forelse ($penjualan as $item)
+                                                <tr>
+                                                    <td>{{ ++$i }}</td>
+                                                    <td>{{ $item->nik }}</td>
+                                                    <td>{{ $item->nama }}</td>
+                                                    <td>{{ $item->jumlah }}</td>
+                                                    <td>{{ $item->harga }}</td>
+                                                    <td>{{ $item->total }}</td>
+                                                </tr>
+                                            @empty
+                                                <div class="alert alert-danger">
+                                                    Data Penjualan belum Tersedia.
+                                                </div>
+                                            @endforelse
+                                        <tbody>
+                                    </table>
                                 </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <nav class="d-inline-block">
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1"><i
+                                                    class="fas fa-chevron-left"></i></a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1 <span
+                                                    class="sr-only">(current)</span></a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             @elseif (Auth::user()->penduduk->regis == 'belum')
                 <div class="section-header">
                     <h1>Usaha Mikro Kecil Dan Menengah (UMKM)</h1>
@@ -355,82 +367,70 @@
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Penjualan UMKM Desa Karanglewas</h2>
-                <p class="section-lead">Example of some Bootstrap table components.</p>
+                        <h2 class="section-title">Penjualan UMKM Desa Karanglewas</h2>
+                        <p class="section-lead">Example of some Bootstrap table components.</p>
 
-                <div class="row">
-                    <div class="col-xl-12 col-md-6 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Data Penjualan</h4>
-                                {{-- tambah penjualan nggo user --}}
-                                @if (Auth()->user()->role == 'admin')
-                                    <div class="card-header-action">
-                                        <a href="{{ route('umkm.create2') }}"
-                                            class="btn btn-icon icon-left btn-primary"><i
-                                                class="fas fa-plus"></i>&nbsp;Tambah Penjualan</a>
+                        <div class="row">
+                            <div class="col-xl-12 col-md-6 col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Data Penjualan</h4>
                                     </div>
-                                @endif
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
-                                    @if ($message = Session::get('success'))
-                                        <div class="alert alert-success">
-                                            <p>{{ $message }}</p>
+                                    <div class="card-body p-0">
+                                        <div class="col-xl-12 col-md-6 col-lg-6" style="overflow-x: auto">
+                                            <table class="table table-bordered" style="width:100rem">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>NIK</th>
+                                                        <th>Nama Produsen</th>
+                                                        <th>Qty</th>
+                                                        <th>Harga</th>
+                                                        <th>Total Penjualan</th>
+                                                    </tr>
+                                                    @forelse ($penjualan as $item)
+                                                        <tr>
+                                                            <td>{{ ++$i }}</td>
+                                                            <td>{{ $item->nik }}</td>
+                                                            <td>{{ $item->nama }}</td>
+                                                            <td>{{ $item->jumlah }}</td>
+                                                            <td>{{ $item->harga }}</td>
+                                                            <td>{{ $item->total }}</td>
+                                                        </tr>
+                                                    @empty
+                                                        <div class="alert alert-danger">
+                                                            Data Penjualan belum Tersedia.
+                                                        </div>
+                                                    @endforelse
+                                                <tbody>
+                                            </table>
                                         </div>
-                                    @endif
-                                    <table class="table table-bordered" style="width:100rem">
-                                        <tbody>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>NIK</th>
-                                                <th>Nama Produsen</th>
-                                                <th>Qty</th>
-                                                <th>Harga</th>
-                                                <th>Total Penjualan</th>
-                                                {{-- <th>Action</th> --}}
-                                            </tr>
-                                            @forelse ($penjualan as $item)
-                                                <tr>
-                                                    <td>{{ ++$i }}</td>
-                                                    <td>{{ $item->nik }}</td>
-                                                    <td>{{ $item->nama }}</td>
-                                                    <td>{{ $item->jumlah }}</td>
-                                                    <td>{{ $item->harga }}</td>
-                                                    <td>{{ $item->total }}</td>
-                                                </tr>
-                                            @empty
-                                                <div class="alert alert-danger">
-                                                    Data Penjualan belum Tersedia.
-                                                </div>
-                                            @endforelse
-                                        <tbody>
-                                    </table>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <nav class="d-inline-block">
+                                            <ul class="pagination mb-0">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1"><i
+                                                            class="fas fa-chevron-left"></i></a>
+                                                </li>
+                                                <li class="page-item active"><a class="page-link" href="#">1 <span
+                                                            class="sr-only">(current)</span></a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">2</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#"><i
+                                                            class="fas fa-chevron-right"></i></a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         @endif
     </section>
 @endsection
