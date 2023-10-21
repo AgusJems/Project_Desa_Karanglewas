@@ -76,8 +76,11 @@
                                             <div onclick="bayar({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-success mb-1 mr-1">
                                                 ACC
                                             </div>
-                                            <div style="cursor:pointer" class="badge badge-pill badge-danger mb-1 ml-1">
+                                            <div style="cursor:pointer" class="badge badge-pill badge-danger mb-1">
                                                 Tolak
+                                            </div>
+                                            <div style="cursor:pointer" class="badge badge-pill badge-warning mb-1 ml-1">
+                                                Kirim Notifikasi
                                             </div>
                                         </td>
                                     </tr>
