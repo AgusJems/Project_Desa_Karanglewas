@@ -60,11 +60,26 @@
                                         <td>
                                             <img class="mb-3" src="{{ asset('/images/'.$item->gambar) }}"
                                             width="100px" alt="{{ $item->gambar }}" id="modal-2">
+                                            <a data-toggle="modal" data-id="ISBN-001122" title="Add this item" class="open-AddBookDialog btn btn-primary" href="#addBookDialog">test</a>
+                                            <div class="modal hide" id="addBookDialog">
+                                                <div class="modal-header">
+                                                    <button class="close" data-dismiss="modal">×</button>
+                                                    <h3>Modal header</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>some content</p>
+                                                    <input type="text" name="bookId" id="bookId" value="" />
+                                                </div>
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             @if ($item->status == 'sudah')
                                             <div class="badge badge-pill badge-success mb-1">
                                                 Sudah Bayar
+                                            </div>
+                                            @elseif($item->status == 'tolak')
+                                            <div class="badge badge-pill badge-warning mb-1">
+                                                Ditolak
                                             </div>
                                             @else
                                             <div class="badge badge-pill badge-danger mb-1">
@@ -281,5 +296,11 @@
             }
         });
     }
+</script>
+<script>
+    $(document).on("click", ".open-AddBookDialog", function() {
+  var myBookId = $(this).data('id');
+  $(".modal-body #bookId").val(myBookId);
+});
 </script>
 @endpush
