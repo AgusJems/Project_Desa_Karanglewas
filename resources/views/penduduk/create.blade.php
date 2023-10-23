@@ -65,6 +65,17 @@
                                     <input type="text" id="alamat" name="alamat" class="form-control" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="notelepon">No Telepon</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <h>+62</h>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control phone-number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="tempatLahir">Tempat Lahir</label>
                                     <input type="text" id="tempatLahir" name="tempatLahir" class="form-control" required>
                                 </div>
