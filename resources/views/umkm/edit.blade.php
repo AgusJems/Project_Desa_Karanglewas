@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <label for="satuan">Satuan Penjualan</label>
                                     <select id="satuan" name="satuan" class="form-control" required>
-                                        <option value="{{ $data->satuan }}" selected disabled>{{ $data->satuan }}</option>
+                                        <option selected disabled>--Pilih Satuan Penjualan--</option>
                                         <option value="pcs">Pcs</option>
                                         <option value="kg">Kg</option>
                                         <option value="meter">Meter</option>

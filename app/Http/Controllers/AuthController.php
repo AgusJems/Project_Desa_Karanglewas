@@ -35,6 +35,7 @@ class AuthController extends Controller
         $request->validate([
             'nik' => 'required|min:16|unique:penduduks|numeric',
             'password' => 'required|min:6',
+            'email' => 'email'
         ]);
         //registrasi penduduk
         $user = new User();

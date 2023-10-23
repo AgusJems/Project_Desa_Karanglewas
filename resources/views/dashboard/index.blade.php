@@ -226,7 +226,7 @@
                         @forelse ($dataPamsimas as $item)
                             <li class="media">
                                 <div class="media-body">
-                                    @if ($item->status == 'Sudah Bayar')
+                                    @if ($item->status == 'sudah')
                                         <div class="badge badge-pill badge-success mb-1 float-right">Bayar</div>
                                     @else
                                         <div class="badge badge-pill badge-danger mb-1 float-right">Belum</div>

@@ -19,6 +19,7 @@ class CreatePenduduksTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nama');
             $table->string('alamat')->nullable();
+            $table->bigInteger('telpon')->nullable();
             $table->string('tptLahir')->nullable();
             $table->string('tglLahir')->nullable();
             $table->string('kelamin')->nullable();

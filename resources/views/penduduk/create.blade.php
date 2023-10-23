@@ -72,7 +72,7 @@
                                                 <h>+62</h>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control phone-number">
+                                        <input type="text" id="notelpon" name="notelpon" class="form-control phone-number">
                                     </div>
                                 </div>
                                 <div class="form-group">

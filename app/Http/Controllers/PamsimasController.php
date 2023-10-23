@@ -6,6 +6,7 @@ use App\Models\Pam;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PamsimasController extends Controller
 {
@@ -34,12 +35,6 @@ class PamsimasController extends Controller
     // simpan data pembayaran sing dilakukan user/penduduk
     public function store(Request $request)
     {
-        if (count($request->bulan) > 1) {
-            $request->bulan = implode(', ', $request->bulan);
-        }else{
-            $request->bulan = $request->bulan[0];
-        }
-        // dd($request->bulan);
         $pam = new Pam();
         $pam->user_id = $request->nik;
         $pam->bulan = $request->bulan;
@@ -49,17 +44,39 @@ class PamsimasController extends Controller
         if ($pam->save()) {
             return redirect()->route('pamsimas.index')->with('success', 'Pembayaran pamsimas atas nama, ' . $request->nama . ' berhasil di atur');
         }
-        //ganti nomor telepon sesuai dengan nomor admiin
     }
 
     // konfirmasi pembayaran ng admin
     public function confirm($id)
     {
+        $currentDateTime = Carbon::now();
+        $formattedDateTime = $currentDateTime->format('Y-m-d');
         $confirm = Pam::whereId($id)->update([
-            'status' => 'sudah'
+            'status' => 'sudah',
+            'tanggal' => $formattedDateTime
         ]);
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
 
+        return response()->json($data, 200);
         return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
+    }
+
+    public function reject($id)
+    {
+        $reject = Pam::whereId($id)->update([
+            'status' => 'tolak'
+        ]);
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
+
+        return response()->json($data, 200);
+        // return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
+    }
+
+    public function notification($id)
+    {
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
+
+        return response()->json($data, 200);
     }
 
     public function create()

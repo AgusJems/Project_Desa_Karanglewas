@@ -35,8 +35,8 @@
                                 </div>
                             @enderror
                             <label for="nik">NIK</label>
-                            <input id="nik" type="text" class="form-control" name="nik" tabindex="1"
-                                required autofocus>
+                            <input id="nik" type="text" class="form-control" name="nik" tabindex="1" required
+                                autofocus minlength="16" maxlength="16">
                             @if ($errors->has('nik'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('nik') }}
@@ -46,8 +46,8 @@
 
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input id="nama" type="text" class="form-control" name="nama" tabindex="1"
-                                required autofocus>
+                            <input id="nama" type="text" class="form-control" name="nama" tabindex="1" required
+                                autofocus>
                             @if ($errors->has('nama'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('nama') }}
@@ -66,8 +66,9 @@
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input id="email" type="text" class="form-control" name="email" tabindex="1"
-                                required autofocus>
+                            <input id="email" type="email" class="form-control" name="email" tabindex="1" required
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                            <small>Enter a valid email address.</small>
                             @if ($errors->has('email'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('email') }}
@@ -80,7 +81,7 @@
                                 <label for="password" class="control-label">Password</label>
                             </div>
                             <input id="password" type="password" class="form-control" name="password" tabindex="2"
-                                required>
+                                minlength="6" required>
                             @if ($errors->has('password'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('password') }}
@@ -93,8 +94,8 @@
                                 Daftar
                             </button>
                             <!-- <a href="{{ route('login.index') }}" class="btn btn-success btn-lg" tabindex="4">
-                                Login
-                            </a> -->
+                                            Login
+                                        </a> -->
                         </div>
                     </form>
 

@@ -84,6 +84,7 @@ class UmkmController extends Controller
     // nyimpen perubahan data umkm sing dipilih
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $productImage = date('YmdHis') . "." . $image->getClientOriginalExtension();

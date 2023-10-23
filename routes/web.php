@@ -24,18 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/website_desa', function () {
-//     return view('layouts.master');
-// });
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-
-// Route::get('/register', function () {
-//     return view('auth/register');
-// });
-
 // route login
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'process'])->name('login.process');
@@ -129,4 +117,6 @@ Route::group(['prefix' => 'pamsimas', 'as' => 'pamsimas.', 'middleware' => 'auth
     Route::post('/store', [PamsimasController::class, 'store'])->name('store');
     Route::get('/payment/{id}', [PamsimasController::class, 'payment'])->name('payment');
     Route::get('/paymentConfirmation/{id}', [PamsimasController::class, 'confirm'])->name('confirm');
+    Route::get('/paymentReject/{id}', [PamsimasController::class, 'reject'])->name('reject');
+    Route::get('/sendNotif/{id}', [PamsimasController::class, 'notification'])->name('notification');
 });
