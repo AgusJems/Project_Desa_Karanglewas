@@ -195,6 +195,7 @@
                                         <tbody>
                                             <tr>
                                                 <th>No.</th>
+                                                <th>Nama</th>
                                                 <th>Bulan</th>
                                                 <th>Tanggal</th>
                                                 <th>Harga</th>
@@ -205,16 +206,17 @@
                                             @forelse ($pamsimas as $item)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
+                                                    <td>{{ $item->nama }}</td>
                                                     <td>{{ $item->bulan }}</td>
                                                     <td>{{ $item->tanggal }}</td>
                                                     <td>{{ $item->harga }}</td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         @if ($item->status == 'sudah')
-                                                            <div class="badge badge-pill badge-success mb-1 float-right">
+                                                            <div class="badge badge-pill badge-success mb-1">
                                                                 Sudah Bayar
                                                             </div>
                                                         @else
-                                                            <div class="badge badge-pill badge-danger mb-1 float-right">
+                                                            <div class="badge badge-pill badge-danger mb-1">
                                                                 Belum Bayar
                                                             </div>
                                                     </td>
@@ -266,18 +268,18 @@
 @push('page_js')
     <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
     <script>
-        
+
         $(document).on("click", ".open-ShowBillDialog", function () {
             var billImage = $(this).data('id');
 
             // alert(billImage);
             var myImage = document.getElementById('billImage');
-            
+
             var imageData = `{{ asset('/images/`+billImage+`') }}`;
             // alert(imageData);
-            
+
             myImage.src = imageData;
-            
+
             $('#myModal').modal('show')
         });
 
