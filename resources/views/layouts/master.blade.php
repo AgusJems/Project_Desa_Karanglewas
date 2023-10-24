@@ -38,8 +38,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
-                        <div class="modal-body">
-                            <img class="mb-3" id="billImage" width="100px">
+                        <div class="modal-body text-center">
+                            <img class="mb-2" id="billImage" width="450px">
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
