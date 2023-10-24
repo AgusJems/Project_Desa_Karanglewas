@@ -44,6 +44,7 @@
                                             <th>NIK</th>
                                             <th>Name</th>
                                             <th>Alamat</th>
+                                            <th>No Telepon</th>
                                             <th>Tampat Lahir</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
@@ -60,6 +61,7 @@
                                                 <td>{{ $value->nik }}</td>
                                                 <td>{{ $value->nama }}</td>
                                                 <td>{{ $value->alamat }}</td>
+                                                <td>+62{{ $value->telpon }}</td>
                                                 <td>{{ $value->tptLahir }}</td>
                                                 <td>{{ $value->tglLahir }}</td>
                                                 <td>{{ $value->kelamin }}</td>
