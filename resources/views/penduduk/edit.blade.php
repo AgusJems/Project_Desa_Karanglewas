@@ -71,6 +71,17 @@
                                     <label for="alamat">Alamat</label>
                                     <input type="text" id="alamat" name="alamat" class="form-control" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="notelepon">No Telepon</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <h>+62</h>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="notelpon" name="notelpon" class="form-control phone-number" value="{{ $data->telpon }}">
+                                    </div>
+                                </div>
                                 @if (Auth::user()->role == 'admin')
                                 <div class="form-group">
                                     <label for="tempatLahir">Tempat Lahir</label>

@@ -86,6 +86,7 @@ class PendudukController extends Controller
             'nik' => $request->nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
+            'telpon' => $request->notelpon,
             'pendidikan' => $request->pendidikan,
             'pam' => $request->pam,
         ]);
@@ -106,6 +107,7 @@ class PendudukController extends Controller
             'nik' => $request->nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
+            'telpon' => $request->notelpon,
             'tptLahir' => $request->tempatLahir,
             'tglLahir' => $request->tanggalLahir,
             'kelamin' => $request->jenisKelamin,

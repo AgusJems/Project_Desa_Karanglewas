@@ -79,10 +79,10 @@
                                             <div onclick="bayar({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-success mb-1 mr-1">
                                                 ACC
                                             </div>
-                                            <div style="cursor:pointer" class="badge badge-pill badge-danger mb-1">
+                                            <div onclick="reject({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-danger mb-1">
                                                 Tolak
                                             </div>
-                                            <div style="cursor:pointer" class="badge badge-pill badge-warning mb-1 ml-1">
+                                            <div onclick="sendNotif({{ $item->id }})" style="cursor:pointer" class="badge badge-pill badge-warning mb-1 ml-1">
                                                 Kirim Notifikasi
                                             </div>
                                         </td>
@@ -139,6 +139,40 @@
                                                 <th>Harga</th>
                                                 <th>Bukti Pembayaran</th>
                                             </tr>
+                                            @forelse ($rekap as $item)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->bulan }}</td>
+                                                <td>{{ $item->tanggal }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                <td>
+                                                    <img class="mb-3 open-ShowBillDialog" src="{{ asset('/images/'.$item->gambar) }}"
+                                                    width="100px" alt="{{ $item->gambar }}" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{$item->gambar}}">
+                                                    {{-- <a data-toggle="modal" data-id="ISBN-001122" title="Add this item" class="open-AddBookDialog btn btn-primary" href="#addBookDialog">test</a> --}}
+                                                </td>
+                                                <td class="text-center">
+                                                    @if ($item->status == 'sudah')
+                                                    <div class="badge badge-pill badge-success mb-1">
+                                                        Sudah Bayar
+                                                    </div>
+                                                    @elseif($item->status == 'tolak')
+                                                    <div class="badge badge-pill badge-warning mb-1">
+                                                        Pembayaran Ditolak
+                                                    </div>
+                                                    @else
+                                                    <div class="badge badge-pill badge-danger mb-1">
+                                                        Belum Bayar
+                                                    </div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            {{-- nek data pamsimas kosong --}}
+                                            @empty
+                                            <div class="alert alert-danger">
+                                                Data Pamsimas belum Tersedia.
+                                            </div>
+                                            @endforelse
                                         <tbody>
                                     </table>
                                 </div>

@@ -28,8 +28,14 @@ class PamsimasController extends Controller
             // ->whereNotNull('pams.bulan')
             ->latest()
             ->first();
+
+        $rekap = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')
+            ->select('pams.*', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat')
+            ->where('pams.status', 'sudah')
+            ->latest()
+            ->paginate(10);
         // dd($data);
-        return view('pamsimas.index', compact('pamsimas', 'penduduk', 'data'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('pamsimas.index', compact('pamsimas', 'penduduk', 'data', 'rekap'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     // simpan data pembayaran sing dilakukan user/penduduk
@@ -55,7 +61,7 @@ class PamsimasController extends Controller
             'status' => 'sudah',
             'tanggal' => $formattedDateTime
         ]);
-        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id', $id)->latest()->first();
 
         return response()->json($data, 200);
         return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
@@ -66,7 +72,7 @@ class PamsimasController extends Controller
         $reject = Pam::whereId($id)->update([
             'status' => 'tolak'
         ]);
-        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id', $id)->latest()->first();
 
         return response()->json($data, 200);
         // return redirect()->route('pamsimas.index')->with('success', 'Status Pembayaran Pamsimas Berhasil Diubah');
@@ -74,7 +80,7 @@ class PamsimasController extends Controller
 
     public function notification($id)
     {
-        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id',$id)->latest()->first();
+        $data = Pam::join('penduduks', 'pams.user_id', '=', 'penduduks.user_id')->select('pams.*', 'penduduks.nama', 'penduduks.telpon')->where('pams.id', $id)->latest()->first();
 
         return response()->json($data, 200);
     }
